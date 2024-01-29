@@ -1,0 +1,265 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <!-- <link rel="shortcut icon" type="image/png" href="./assets/Behrouz-Logo.png" /> -->
+  <title>Watani Credit Card</title>
+  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/dist/mindar-image.prod.js"></script>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script> -->
+
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .example-container {
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    #example-scanning-overlay {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: transparent;
+      z-index: 2;
+    }
+
+    @media (min-aspect-ratio: 1/1) {
+      #example-scanning-overlay .inner {
+        width: 50vh;
+        height: 50vh;
+      }
+    }
+
+    @media (max-aspect-ratio: 1/1) {
+      #example-scanning-overlay .inner {
+        width: 80vw;
+        height: 80vw;
+      }
+    }
+
+    #example-scanning-overlay .inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      background:
+        linear-gradient(to right, white 10px, transparent 10px) 0 0,
+        linear-gradient(to right, white 10px, transparent 10px) 0 100%,
+        linear-gradient(to left, white 10px, transparent 10px) 100% 0,
+        linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
+        linear-gradient(to bottom, white 10px, transparent 10px) 0 0,
+        linear-gradient(to bottom, white 10px, transparent 10px) 100% 0,
+        linear-gradient(to top, white 10px, transparent 10px) 0 100%,
+        linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
+      background-repeat: no-repeat;
+      background-size: 40px 40px;
+    }
+
+    #example-scanning-overlay.hidden {
+      display: none;
+    }
+
+    #example-scanning-overlay img {
+      opacity: 1;
+      width: 90%;
+      align-self: center;
+    }
+
+    #example-scanning-overlay h3 {
+      position: absolute;
+      top: 77%;
+      align-self: center;
+      color: white;
+    }
+
+    #example-scanning-overlay .inner .scanline {
+      position: absolute;
+      width: 100%;
+      height: 10px;
+      background: white;
+      animation: move 2s linear infinite;
+    }
+
+    @keyframes move {
+
+      0%,
+      100% {
+        top: 0%
+      }
+
+      50% {
+        top: calc(100% - 10px)
+      }
+    }
+
+    #redirectbtn {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 90%;
+      left: 50%;
+      width: 70%;
+      height: auto;
+      visibility: hidden;
+      z-index: 99999;
+    }
+
+    #rotateText {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 90%;
+      left: 50%;
+      width: 70%;
+      height: auto;
+      visibility: hidden;
+      z-index: 99999;
+    }
+
+    #logo {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 7%;
+      left: 50%;
+      width: auto;
+      height: 70px;
+      visibility: hidden;
+      z-index: 99999;
+    }
+
+    #cameraNotPermitted {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: auto;
+      height: 45%;
+      visibility: hidden;
+      z-index: 99999;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="example-container">
+    <div id="example-scanning-overlay" class="hidden">
+      <div class="inner">
+        <img src="./assets/CreditCard.png" />
+        <div class="scanline"></div>
+      </div>
+    </div>
+    <img id="rotateText" src="./assets/RotateText1.png" />
+    <img id="redirectbtn" src="./assets/RedirectBtn.png" onclick="redirectBtnClick()" />
+    <img id="logo" src="./assets/RAKIslamic-Logo.png" />
+    <img id="cameraNotPermitted" src="./assets/CameraNotPermitted.png" />
+
+    <a-scene
+      mindar-image="imageTargetSrc: ./assets/CreditCard.mind; filterMinCF:0.0001; filterBeta: 0.001; showStats: false; uiScanning: #example-scanning-overlay;"
+      loading-screen="dotsColor: red; backgroundColor: black" gesture-detector color-space="sRGB"
+      renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: false">
+      <a-assets>
+        <a-asset-item id="avatarModel" src="./assets/BehrouzBiryaniOptimized.gltf" crossorigin="anonymous"
+          preload="auto"></a-asset-item>
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <a-entity mytarget mindar-image-target="targetIndex: 0">
+        <a-entity rotation="10 90 90" position="0 0 0.1" scale="4 4 4" gltf-model="#avatarModel" class="clickable"
+          gesture-handler="minScale: 0.25; maxScale: 10"></a-entity>
+      </a-entity>
+    </a-scene>
+
+  </div>
+
+  <script>
+    ; (function () {
+      var src = 'https://cdnjs.cloudflare.com/ajax/libs/eruda/2.4.1/eruda.min.js';
+      if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+      document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+      document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+    })();
+
+    var redirectbtn = document.getElementById('redirectbtn')
+    const sceneEl = document.querySelector('a-scene');
+    const arSystem = sceneEl.systems["mindar-image-system"];
+
+    if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+      console.log("Let's get this party started")
+    }
+
+    var constraints = {
+      video: true,
+      audio: false
+    }
+
+    setInterval(function() {
+      navigator.permissions.query({ name: 'camera' }).then(function (result) {
+        // alert(result.state);
+        if (result.state === 'granted') {
+          //permission has already been granted, no prompt is shown
+        } else if (result.state === 'prompt') {
+          //there's no peristent permission registered, will be showing the prompt
+        } else if (result.state === 'denied') {
+        //permission has been denied
+        window.navigator.mediaDevices.getUserMedia(constraints)
+        .then((stream) => {
+            console.log('Camera Access Permitted')
+          })
+          .catch((err) => {
+            console.log('Camera Access Denied')
+            document.getElementById('cameraNotPermitted').style.visibility = 'visible'
+            setTimeout(function () {
+              window.location.reload();
+            }, 5000)
+          });
+        }
+      });
+    },1000)
+      
+
+    sceneEl.addEventListener("arReady", (event) => {
+      console.log("MindAR is ready")
+      document.getElementById('logo').style.visibility = 'visible'
+    });
+
+    function redirectBtnClick() {
+      console.log("Redirecting...")
+      // window.location.href = "https://www.behrouzbiryani.com/Raan-AR?utm_source=qr&utm_medium=flyer&utm_id=Raan-AR"
+      window.open("https://www.behrouzbiryani.com/Raan-AR?utm_source=qr&utm_medium=flyer&utm_id=Raan-AR", "_blank");
+    }
+
+    AFRAME.registerComponent('mytarget', {
+      init: function () {
+        this.el.addEventListener('targetFound', event => {
+          document.getElementById('example-scanning-overlay').style.display = 'none'
+          document.getElementById('rotateText').style.visibility = "visible"
+          console.log("target found");
+          setTimeout(function () {
+            redirectbtn.style.visibility = "visible"
+            document.getElementById('rotateText').style.visibility = "hidden"
+          }, 4000)
+        });
+        this.el.addEventListener('targetLost', event => {
+          console.log("target lost");
+          document.getElementById('example-scanning-overlay').style.display = 'flex'
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
