@@ -291,7 +291,7 @@
     <img id="privacyPolicy" src="./assets/PrivacyPolicy.png" onclick="hideInformationCard()" />
 
     <a-scene
-      mindar-image="imageTargetSrc: ./assets/CreditCard.mind; filterMinCF:0.0001; filterBeta: 0.001; showStats: false; uiScanning: #example-scanning-overlay;"
+      mindar-image="imageTargetSrc: ./assets/CreditCard.mind; filterMinCF:0.0001; filterBeta: 15; showStats: false; uiScanning: #example-scanning-overlay; warmupTolerance: 1; missTolerance: 5"
       loading-screen="dotsColor: red; backgroundColor: black" gesture-detector color-space="sRGB"
       renderer="colorManagement: true, physicallyCorrectLights" xr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: false">
@@ -349,71 +349,71 @@
 
         <!-- <a-plane id="bgImagePlane" src="#bgimage" material="transparent: true; opacity: 0" position="0 0 0" height="2" width="2" rotation="0 0 0"
           animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 1600; autoplay: false; startEvents: bganimstart"></a-plane> -->
-        <a-plane id="ccImagePlane" src="#ccimage" visible="false" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
-        <a-plane id="ccImageBlackPlane" src="#ccimageBlack" visible="true" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
-        <a-plane id="ccimageGradientPlane" src="#ccimageGradient" visible="true" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
-        <a-plane id="ccimageNameChipPlane" src="#ccimageNameChip" visible="true" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
+        <a-plane id="ccImagePlane" src="#ccimage" visible="false" click-detector material="transparent: true; shader: flat;" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
+        <a-plane id="ccImageBlackPlane" src="#ccimageBlack" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
+        <a-plane id="ccimageGradientPlane" src="#ccimageGradient" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
+        <a-plane id="ccimageNameChipPlane" src="#ccimageNameChip" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
         <!-- <a-entity id="animPlane" geometry="primitive:plane;width:1.7777;height:1;" position="0.1 0.02 0.1" material="shader:gif;src:#anim;alphaTest:0.5;"></a-entity> -->
         <!-- <a-plane id="ccimageAnimationPlane" src="#ccimageAnimation" visible="true" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane> -->
         
         <!-- Benefits Dots Plane -->
-        <a-plane id="B0Plane" visible="false" src="#B0" material="transparent: true" 
+        <a-plane id="B0Plane" visible="false" src="#B0" material="transparent: true; shader: flat;" 
                  position="0 0 0" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
 
         <!-- Green Gradients -->
-        <a-plane id="B1GGPlane" visible="false" src="#B1GG" material="transparent: true" 
+        <a-plane id="B1GGPlane" visible="false" src="#B1GG" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B2GGPlane" visible="false" src="#B2GG" material="transparent: true" 
+        <a-plane id="B2GGPlane" visible="false" src="#B2GG" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B3GGPlane" visible="false" src="#B3GG" material="transparent: true" 
+        <a-plane id="B3GGPlane" visible="false" src="#B3GG" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B4GGPlane" visible="false" src="#B4GG" material="transparent: true" 
+        <a-plane id="B4GGPlane" visible="false" src="#B4GG" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B5GGPlane" visible="false" src="#B5GG" material="transparent: true" 
+        <a-plane id="B5GGPlane" visible="false" src="#B5GG" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B6GGPlane" visible="false" src="#B6GG" material="transparent: true" 
+        <a-plane id="B6GGPlane" visible="false" src="#B6GG" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
 
         <!-- Red Gradients -->
-        <a-plane id="B1RGPlane" visible="false" src="#B1RG" material="transparent: true" 
+        <a-plane id="B1RGPlane" visible="false" src="#B1RG" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B2RGPlane" visible="false" src="#B2RG" material="transparent: true" 
+        <a-plane id="B2RGPlane" visible="false" src="#B2RG" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B3RGPlane" visible="false" src="#B3RG" material="transparent: true" 
+        <a-plane id="B3RGPlane" visible="false" src="#B3RG" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B4RGPlane" visible="false" src="#B4RG" material="transparent: true" 
+        <a-plane id="B4RGPlane" visible="false" src="#B4RG" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B5RGPlane" visible="false" src="#B5RG" material="transparent: true" 
+        <a-plane id="B5RGPlane" visible="false" src="#B5RG" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B6RGPlane" visible="false" src="#B6RG" material="transparent: true" 
+        <a-plane id="B6RGPlane" visible="false" src="#B6RG" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
 
         <!-- Text Planes -->
-        <a-plane id="B1TextPlane" visible="false" src="#B1Text" material="transparent: true; alphaTest: 0.1"
+        <a-plane id="B1TextPlane" visible="false" src="#B1Text" material="transparent: true; alphaTest: 0.1; shader: flat;"
                  position="0 0 0.012" height="2" width="2" rotation="0 0 0"></a-plane>
-        <a-plane id="B2TextPlane" visible="false" src="#B2Text" material="transparent: true; alphaTest: 0.1"
+        <a-plane id="B2TextPlane" visible="false" src="#B2Text" material="transparent: true; alphaTest: 0.1; shader: flat;"
                  position="0 0 0.012" height="2" width="2" rotation="0 0 0"></a-plane>
-        <a-plane id="B3TextPlane" visible="false" src="#B3Text" material="transparent: true; alphaTest: 0.1"
+        <a-plane id="B3TextPlane" visible="false" src="#B3Text" material="transparent: true; alphaTest: 0.1; shader: flat;"
                  position="0 0 0.012" height="2" width="2" rotation="0 0 0"></a-plane>
-        <a-plane id="B4TextPlane" visible="false" src="#B4Text" material="transparent: true; alphaTest: 0.1"
+        <a-plane id="B4TextPlane" visible="false" src="#B4Text" material="transparent: true; alphaTest: 0.1; shader: flat;"
                  position="0 0 0.012" height="2" width="2" rotation="0 0 0"></a-plane>
-        <a-plane id="B5TextPlane" visible="false" src="#B5Text" material="transparent: true; alphaTest: 0.1"
+        <a-plane id="B5TextPlane" visible="false" src="#B5Text" material="transparent: true; alphaTest: 0.1; shader: flat;"
                  position="0 0 0.012" height="2" width="2" rotation="0 0 0"></a-plane>
-        <a-plane id="B6TextPlane" visible="false" src="#B6Text" material="transparent: true; alphaTest: 0.1"
+        <a-plane id="B6TextPlane" visible="false" src="#B6Text" material="transparent: true; alphaTest: 0.1; shader: flat;"
                  position="0 0 0.012" height="2" width="2" rotation="0 0 0"></a-plane>
            
         <!-- Benefits Icons Planes -->
-        <a-plane id="B1Plane" visible="false" src="#B1" material="transparent: true" class="clickable"
+        <a-plane id="B1Plane" visible="false" src="#B1" material="transparent: true; shader: flat;" class="clickable"
                  position="-0.8 0.13 0.011" height="0.3" width="0.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B2Plane" visible="false" src="#B2" material="transparent: true" class="clickable"
+        <a-plane id="B2Plane" visible="false" src="#B2" material="transparent: true; shader: flat;" class="clickable"
                  position="-0.66 -0.36 0.011" height="0.3" width="0.25" rotation="0 0 0"></a-plane>
-        <a-plane id="B3Plane" visible="false" src="#B3" material="transparent: true" class="clickable"
+        <a-plane id="B3Plane" visible="false" src="#B3" material="transparent: true; shader: flat;" class="clickable"
                  position="-0.26 -0.64 0.011" height="0.3" width="0.32" rotation="0 0 0"></a-plane>
-        <a-plane id="B4Plane" visible="false" src="#B4" material="transparent: true" class="clickable" 
-                 position="0.28 -0.64 0.011" height="0.3" width="0.25 rotation="0 0 0"></a-plane>
-        <a-plane id="B5Plane" visible="false" src="#B5" material="transparent: true" class="clickable"
+        <a-plane id="B4Plane" visible="false" src="#B4" material="transparent: true; shader: flat;" class="clickable" 
+                 position="0.28 -0.64 0.011" height="0.3" width="0.25" rotation="0 0 0"></a-plane>
+        <a-plane id="B5Plane" visible="false" src="#B5" material="transparent: true; shader: flat;" class="clickable"
                  position="0.65 -0.36 0.011" height="0.3" width="0.23" rotation="0 0 0"></a-plane>
-        <a-plane id="B6Plane" visible="false" src="#B6" material="transparent: true" class="clickable"
+        <a-plane id="B6Plane" visible="false" src="#B6" material="transparent: true; shader: flat;" class="clickable"
                  position="0.8 0.13 0.011" height="0.3" width="0.25" rotation="0 0 0"></a-plane>
 
 
