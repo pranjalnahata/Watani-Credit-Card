@@ -169,7 +169,7 @@
       transform: translate(-50%, -50%);
       position: absolute;
       top: 82%;
-      left: 50%;
+      left: 45%;
       width: 70%;
       height: auto;
       visibility: hidden;
@@ -192,7 +192,7 @@
       transform: translate(-50%, -50%);
       position: absolute;
       top: 89%;
-      left: 50%;
+      left: 45%;
       width: 70%;
       height: auto;
       visibility: hidden;
@@ -215,7 +215,7 @@
       transform: translate(-50%, -50%);
       position: absolute;
       top: 90%;
-      left: 50%;
+      left: 45%;
       width: 70%;
       height: auto;
       visibility: hidden;
@@ -291,7 +291,7 @@
     <img id="privacyPolicy" src="./assets/PrivacyPolicy.png" onclick="hideInformationCard()" />
 
     <a-scene
-      mindar-image="imageTargetSrc: ./assets/CreditCard.mind; filterMinCF:0.0001; filterBeta: 15; showStats: false; uiScanning: #example-scanning-overlay; warmupTolerance: 1; missTolerance: 5"
+      mindar-image="imageTargetSrc: ./assets/CreditCard.mind; filterMinCF:0.001; filterBeta: 1000; showStats: false; uiScanning: #example-scanning-overlay; warmupTolerance: 1; missTolerance: 5"
       loading-screen="dotsColor: red; backgroundColor: black" gesture-detector color-space="sRGB"
       renderer="colorManagement: true, physicallyCorrectLights" xr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: false">
@@ -301,7 +301,7 @@
         <img id="ccimageGradient" src="./assets/BgCardGradient.png">
         <img id="ccimageNameChip" src="./assets/BgCardNameChip.png">
         <!-- <img id="ccimageAnimation" src="./assets/logo_2_alpha.gif"> -->
-        <!-- <img id="bgimage" src="./assets/BgGradient.png"> -->
+        <img id="bgimage" src="./assets/BgGradient.png">
         <img id="benefitsDetails" src="./assets/benefitsDetails.png">
 
         <img id="B0" src="./assets/B0.png">
@@ -347,32 +347,39 @@
 
       <a-entity id="aentity" mytarget mindar-image-target="targetIndex: 0" class="clickable">
 
-        <!-- <a-plane id="bgImagePlane" src="#bgimage" material="transparent: true; opacity: 0" position="0 0 0" height="2" width="2" rotation="0 0 0"
-          animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 1600; autoplay: false; startEvents: bganimstart"></a-plane> -->
-        <a-plane id="ccImagePlane" src="#ccimage" visible="false" click-detector material="transparent: true; shader: flat;" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
-        <a-plane id="ccImageBlackPlane" src="#ccimageBlack" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
-        <a-plane id="ccimageGradientPlane" src="#ccimageGradient" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
-        <a-plane id="ccimageNameChipPlane" src="#ccimageNameChip" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
+        <a-plane id="bgImagePlane" src="#bgimage" material="transparent: true; opacity: 0" position="0 0 0" height="2" width="2" rotation="0 0 0"
+          animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 1600; autoplay: false; startEvents: bganimstart"></a-plane>
+        <a-plane id="ccImagePlane" src="#ccimage" visible="false" click-detector material="transparent: true; shader: flat;" position="0 0 0.005" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
+        <a-plane id="ccImageBlackPlane" src="#ccimageBlack" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0.005" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
+        <a-plane id="ccimageGradientPlane" src="#ccimageGradient" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0.005" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
+        <a-plane id="ccimageNameChipPlane" src="#ccimageNameChip" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0.005" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
         <!-- <a-entity id="animPlane" geometry="primitive:plane;width:1.7777;height:1;" position="0.1 0.02 0.1" material="shader:gif;src:#anim;alphaTest:0.5;"></a-entity> -->
         <!-- <a-plane id="ccimageAnimationPlane" src="#ccimageAnimation" visible="true" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane> -->
         
         <!-- Benefits Dots Plane -->
         <a-plane id="B0Plane" visible="false" src="#B0" material="transparent: true; shader: flat;" 
-                 position="0 0 0" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
+                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" opacity="0"
+                 animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
 
         <!-- Green Gradients -->
         <a-plane id="B1GGPlane" visible="false" src="#B1GG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
+                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" scale="1 1 1" opacity="0"
+                 animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B2GGPlane" visible="false" src="#B2GG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
+                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" scale="1 1 1" opacity="0"
+                 animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B3GGPlane" visible="false" src="#B3GG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
+                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" scale="1 1 1" opacity="0"
+                 animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B4GGPlane" visible="false" src="#B4GG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
+                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" scale="1 1 1" opacity="0"
+                 animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B5GGPlane" visible="false" src="#B5GG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
+                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" scale="1 1 1" opacity="0"
+                 animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B6GGPlane" visible="false" src="#B6GG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
+                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" scale="1 1 1" opacity="0"
+                 animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
 
         <!-- Red Gradients -->
         <a-plane id="B1RGPlane" visible="false" src="#B1RG" material="transparent: true; shader: flat;" 
@@ -404,17 +411,23 @@
            
         <!-- Benefits Icons Planes -->
         <a-plane id="B1Plane" visible="false" src="#B1" material="transparent: true; shader: flat;" class="clickable"
-                 position="-0.8 0.13 0.011" height="0.3" width="0.3" rotation="0 0 0"></a-plane>
+                 position="-0.8 0.13 0.011" height="0.3" width="0.3" rotation="0 0 0" scale="0 0 0"
+                 animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B2Plane" visible="false" src="#B2" material="transparent: true; shader: flat;" class="clickable"
-                 position="-0.66 -0.36 0.011" height="0.3" width="0.25" rotation="0 0 0"></a-plane>
+                 position="-0.66 -0.36 0.011" height="0.3" width="0.25" rotation="0 0 0" scale="0 0 0"
+                 animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B3Plane" visible="false" src="#B3" material="transparent: true; shader: flat;" class="clickable"
-                 position="-0.26 -0.64 0.011" height="0.3" width="0.32" rotation="0 0 0"></a-plane>
+                 position="-0.26 -0.64 0.011" height="0.3" width="0.32" rotation="0 0 0" scale="0 0 0"
+                 animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B4Plane" visible="false" src="#B4" material="transparent: true; shader: flat;" class="clickable" 
-                 position="0.28 -0.64 0.011" height="0.3" width="0.25" rotation="0 0 0"></a-plane>
+                 position="0.28 -0.64 0.011" height="0.3" width="0.25" rotation="0 0 0" scale="0 0 0"
+                 animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B5Plane" visible="false" src="#B5" material="transparent: true; shader: flat;" class="clickable"
-                 position="0.65 -0.36 0.011" height="0.3" width="0.23" rotation="0 0 0"></a-plane>
+                 position="0.65 -0.36 0.011" height="0.3" width="0.23" rotation="0 0 0" scale="0 0 0"
+                 animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B6Plane" visible="false" src="#B6" material="transparent: true; shader: flat;" class="clickable"
-                 position="0.8 0.13 0.011" height="0.3" width="0.25" rotation="0 0 0"></a-plane>
+                 position="0.8 0.13 0.011" height="0.3" width="0.25" rotation="0 0 0" scale="0 0 0"
+                 animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
 
 
         <a-plane id="a-video1"
@@ -590,15 +603,15 @@
       document.getElementById('privacyPolicy').style.visibility = 'hidden'
     }
 
-    // var animateBgGradient = (function() {
-    //   var executed = false;
-    //   return function() {
-    //     if (!executed) {
-    //       executed = true;
-    //       document.getElementById('bgImagePlane').emit('bganimstart')
-    //     }
-    //   };
-    // })();
+    var animateBgGradient = (function() {
+      var executed = false;
+      return function() {
+        if (!executed) {
+          executed = true;
+          document.getElementById('bgImagePlane').emit('bganimstart')
+        }
+      };
+    })();
 
     var initOptionsScreen = (function() {
       var executed = false;
@@ -641,31 +654,44 @@
 
           setTimeout(function () {
             document.getElementById('B1Plane').setAttribute('visible', true)
+            document.getElementById('B1Plane').emit('scaleAnimStart')
             document.getElementById('B1GGPlane').setAttribute('visible', true)
+            document.getElementById('B1GGPlane').emit('scaleAnimStart')
             setTimeout(function () {
               document.getElementById('B2Plane').setAttribute('visible', true)
+              document.getElementById('B2Plane').emit('scaleAnimStart')
               document.getElementById('B2GGPlane').setAttribute('visible', true)
+              document.getElementById('B2GGPlane').emit('scaleAnimStart')
               setTimeout(function () {
                 document.getElementById('B3Plane').setAttribute('visible', true)
+                document.getElementById('B3Plane').emit('scaleAnimStart')
                 document.getElementById('B3GGPlane').setAttribute('visible', true)
+                document.getElementById('B3GGPlane').emit('scaleAnimStart')
                 setTimeout(function () {
                   document.getElementById('B4Plane').setAttribute('visible', true)
+                  document.getElementById('B4Plane').emit('scaleAnimStart')
                   document.getElementById('B4GGPlane').setAttribute('visible', true)
+                  document.getElementById('B4GGPlane').emit('scaleAnimStart')
                   setTimeout(function () {
                     document.getElementById('B5Plane').setAttribute('visible', true)
+                    document.getElementById('B5Plane').emit('scaleAnimStart')
                     document.getElementById('B5GGPlane').setAttribute('visible', true)
+                    document.getElementById('B5GGPlane').emit('scaleAnimStart')
                     setTimeout(function () {
                       document.getElementById('B6Plane').setAttribute('visible', true)
+                      document.getElementById('B6Plane').emit('scaleAnimStart')
                       document.getElementById('B6GGPlane').setAttribute('visible', true)
+                      document.getElementById('B6GGPlane').emit('scaleAnimStart')
                       setTimeout(function () {
                         document.getElementById('B0Plane').setAttribute('visible', true)
-                      }, 200)
-                    }, 200)
-                  }, 200)
-                }, 200)
-              }, 200)
-            }, 200)
-          }, 200)
+                        document.getElementById('B0Plane').emit('scaleAnimStart')
+                      }, 300)
+                    }, 300)
+                  }, 300)
+                }, 300)
+              }, 300)
+            }, 300)
+          }, 300)
           
         }
       };
@@ -686,12 +712,15 @@
           document.getElementById('example-scanning-overlay').style.display = 'none'
           document.getElementById('scanText').style.display = 'none'
           document.getElementById('logo').style.visibility = "hidden"
-          video1.play()
-          // animateBgGradient()
+          animateBgGradient()
+          
+          setTimeout(function () {
+            video1.play()
+          }, 2000)
           
           setTimeout(function () {
             initOptionsScreen()
-          }, 3000)
+          }, 4500)
         });
         this.el.addEventListener('targetLost', event => {
           console.log("target lost");
