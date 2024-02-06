@@ -9,6 +9,8 @@
   <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/dist/mindar-image.prod.js"></script>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
+  <script src="./dist/aframe-gif-shader.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script> -->
 
   <style>
@@ -55,6 +57,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      opacity: 0.75;
 
       background:
         linear-gradient(to right, white 10px, transparent 10px) 0 0,
@@ -74,14 +77,14 @@
     }
 
     #example-scanning-overlay img {
-      opacity: 1;
       width: 90%;
       align-self: center;
     }
 
     #example-scanning-overlay h3 {
+      display: block;
       position: absolute;
-      top: 77%;
+      top: 105%;
       align-self: center;
       color: white;
     }
@@ -90,8 +93,9 @@
       position: absolute;
       width: 100%;
       height: 10px;
+      /* opacity: 0.75; */
       background: white;
-      animation: move 2s linear infinite;
+      animation: move 3s linear infinite;
     }
 
     @keyframes move {
@@ -104,17 +108,6 @@
       50% {
         top: calc(100% - 10px)
       }
-    }
-
-    #redirectbtn {
-      transform: translate(-50%, -50%);
-      position: absolute;
-      top: 90%;
-      left: 50%;
-      width: 70%;
-      height: auto;
-      visibility: hidden;
-      z-index: 99999;
     }
 
     #logo {
@@ -138,6 +131,17 @@
       visibility: hidden;
       z-index: 99999;
     }
+    .infoAppear {
+      animation: infoAppear1 1s ease-out 1;
+    }
+    @keyframes infoAppear1 {
+      0% {
+        left: 85%;
+      }
+      100% {
+        left: 78%;
+      }
+    }
 
     #reloadIcon {
       transform: translate(-50%, -50%);
@@ -149,6 +153,17 @@
       visibility: hidden;
       z-index: 99999;
     }
+    .reloadAppear {
+      animation: reloadAppear1 1s ease-out 1;
+    }
+    @keyframes reloadAppear1 {
+      0% {
+        left: 97%;
+      }
+      100% {
+        left: 90%;
+      }
+    }
 
     #activateCardIcon1 {
       transform: translate(-50%, -50%);
@@ -159,6 +174,18 @@
       height: auto;
       visibility: hidden;
       z-index: 99999;
+      
+    }
+    .animationAppear1 {
+      animation: appear1 1s ease-out 1;
+    }
+    @keyframes appear1 {
+      0% {
+        top: 89%
+      }
+      100% {
+        top: 82%
+      }
     }
 
     #checkYourBenefitsIcon {
@@ -171,6 +198,18 @@
       visibility: hidden;
       z-index: 99999;
     }
+    .animationAppear2 {
+      animation: appear2 1s ease-out 1;
+    }
+    @keyframes appear2 {
+      0% {
+        top: 96%
+      }
+      100% {
+        top: 89%
+      }
+    }
+
 
     #activateYourCardIcon {
       transform: translate(-50%, -50%);
@@ -192,6 +231,17 @@
       height: auto;
       visibility: hidden;
       z-index: 99999;
+    }
+    .benefitsAppear {
+      animation: benefitsAppear1 1s ease-out 1;
+    }
+    @keyframes benefitsAppear1 {
+      0% {
+        top: 15%
+      }
+      100% {
+        top: 10%
+      }
     }
 
     #cameraNotPermitted {
@@ -222,17 +272,20 @@
   <div class="example-container">
     <div id="example-scanning-overlay" class="hidden">
       <div class="inner">
+        <h3 id="scanText">Scan your Watani card to get started</h3>
         <img src="./assets/CreditCard.png" />
         <div class="scanline"></div>
       </div>
     </div>
-    <img id="redirectbtn" src="./assets/RedirectBtn.png" onclick="redirectBtnClick()" />
     <img id="logo" src="./assets/RAKIslamic-Logo.png" />
     <img id="cameraNotPermitted" src="./assets/CameraNotPermitted.png" />
+
     <img id="informationIcon" src="./assets/informationIcon.png" onclick="informationCard()"/>
     <img id="reloadIcon" src="./assets/reloadIcon.png" onclick="refreshPage()"/>
+
     <img id="activateCardIcon1" src="./assets/activateCardIcon1.png" onclick="activateCardIcon1()"/>
     <img id="checkYourBenefitsIcon" src="./assets/checkYourBenefitsIcon.png" onclick="checkYourBenefitsIcon()"/>
+
     <img id="activateYourCardIcon" src="./assets/activateYourCard.png" onclick="activateCardIcon1()"/>
     <img id="benefitsIcon" src="./assets/Benefits.png" />
     <img id="privacyPolicy" src="./assets/PrivacyPolicy.png" onclick="hideInformationCard()" />
@@ -240,14 +293,15 @@
     <a-scene
       mindar-image="imageTargetSrc: ./assets/CreditCard.mind; filterMinCF:0.0001; filterBeta: 0.001; showStats: false; uiScanning: #example-scanning-overlay;"
       loading-screen="dotsColor: red; backgroundColor: black" gesture-detector color-space="sRGB"
-      renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+      renderer="colorManagement: true, physicallyCorrectLights" xr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: false">
       <a-assets>
-        <!-- <a-asset-item id="avatarModel" src="./assets/BehrouzBiryaniOptimized.gltf" 
-        crossorigin="anonymous" preload="auto"></a-asset-item> -->
         <img id="ccimage" src="./assets/BgCard.png">
-        <img id="ccimageBlack" src="./assets/BgCardBlack.png">
-        <img id="bgimage" src="./assets/BgGradient.png">
+        <img id="ccimageBlack" src="./assets/BgCardBlack1.png">
+        <img id="ccimageGradient" src="./assets/BgCardGradient.png">
+        <img id="ccimageNameChip" src="./assets/BgCardNameChip.png">
+        <!-- <img id="ccimageAnimation" src="./assets/logo_2_alpha.gif"> -->
+        <!-- <img id="bgimage" src="./assets/BgGradient.png"> -->
         <img id="benefitsDetails" src="./assets/benefitsDetails.png">
 
         <img id="B0" src="./assets/B0.png">
@@ -278,6 +332,13 @@
         <img id="B4Text" src="./assets/B4Text.png">
         <img id="B5Text" src="./assets/B5Text.png">
         <img id="B6Text" src="./assets/B6Text.png">
+
+        <img id="anim" src="./assets/Anim.gif">
+        <video id="video1" crossorigin="anonymous" preload="auto" autoplay="false" style="opacity: 1;" src="./assets/Anim.mp4" playsinline muted></video>
+        <!-- <video id="video1" crossorigin="anonymous" preload="auto" playsinline webkit-playsinline>
+          <source src="./assets/Anim.mov" type='video/mp4; codecs=hvc1'>
+          <source src="./assets/Anim.webm" type="video/webm">
+        </video> -->
         
       </a-assets>
 
@@ -285,10 +346,15 @@
 
 
       <a-entity id="aentity" mytarget mindar-image-target="targetIndex: 0" class="clickable">
-        <a-plane id="bgImagePlane" src="#bgimage" material="transparent: true; opacity: 0" position="0 0 0" height="2" width="2" rotation="0 0 0"
-          animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 1600; autoplay: false; startEvents: bganimstart"></a-plane>
-        <a-plane id="ccImagePlane" src="#ccimage" visible="true" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
-        <a-plane id="ccImageBlackPlane" src="#ccimageBlack" visible="false" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
+
+        <!-- <a-plane id="bgImagePlane" src="#bgimage" material="transparent: true; opacity: 0" position="0 0 0" height="2" width="2" rotation="0 0 0"
+          animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 1600; autoplay: false; startEvents: bganimstart"></a-plane> -->
+        <a-plane id="ccImagePlane" src="#ccimage" visible="false" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
+        <a-plane id="ccImageBlackPlane" src="#ccimageBlack" visible="true" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
+        <a-plane id="ccimageGradientPlane" src="#ccimageGradient" visible="true" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
+        <a-plane id="ccimageNameChipPlane" src="#ccimageNameChip" visible="true" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane>
+        <!-- <a-entity id="animPlane" geometry="primitive:plane;width:1.7777;height:1;" position="0.1 0.02 0.1" material="shader:gif;src:#anim;alphaTest:0.5;"></a-entity> -->
+        <!-- <a-plane id="ccimageAnimationPlane" src="#ccimageAnimation" visible="true" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane> -->
         
         <!-- Benefits Dots Plane -->
         <a-plane id="B0Plane" visible="false" src="#B0" material="transparent: true" 
@@ -351,6 +417,14 @@
                  position="0.8 0.13 0.011" height="0.3" width="0.25" rotation="0 0 0"></a-plane>
 
 
+        <a-plane id="a-video1"
+          material="shader: chromakey; src: #video1; color: .1 .1 .1" 
+          position="0.1 0.02 0.1" 
+          scale="1.777 1 1"
+          visible="true"
+        ></a-plane>
+
+
       </a-entity>
     </a-scene>
 
@@ -364,12 +438,19 @@
       document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
     })();
 
-    var redirectbtn = document.getElementById('redirectbtn')
     const sceneEl = document.querySelector('a-scene');
     const arSystem = sceneEl.systems["mindar-image-system"];
+    
+    var video1 = document.getElementById("video1")
+    video1.autoplay = false
+    video1.preload = "auto"
+    var aVideo1 = document.getElementById("a-video1")
+    video1.addEventListener('canplay', () => {
+      console.log('ready')
+    })
 
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-      console.log("Let's get this party started!!!")
+      console.log("Permissions Granted")
     }
 
     var constraints = {
@@ -384,8 +465,11 @@
       document.getElementById('B4TextPlane').setAttribute('visible', false)
       document.getElementById('B5TextPlane').setAttribute('visible', false)
       document.getElementById('B6TextPlane').setAttribute('visible', false)
+      document.getElementById('a-video1').setAttribute('visible', false)
 
       document.getElementById('ccImagePlane').setAttribute('visible', false)
+      document.getElementById('ccimageGradientPlane').setAttribute('visible', true)
+      document.getElementById('ccimageNameChipPlane').setAttribute('visible', false)
       document.getElementById('ccImageBlackPlane').setAttribute('visible', true)
     }
 
@@ -489,12 +573,6 @@
       document.getElementById('logo').style.visibility = 'visible'
     });
 
-    function redirectBtnClick() {
-      console.log("Redirecting...")
-      // window.location.href = "https://www.behrouzbiryani.com/Raan-AR?utm_source=qr&utm_medium=flyer&utm_id=Raan-AR"
-      window.open("https://www.behrouzbiryani.com/Raan-AR?utm_source=qr&utm_medium=flyer&utm_id=Raan-AR", "_blank");
-    }
-
     function activateCardIcon1() {
       console.log("Redirect")
       window.location.href = "https://www.rakbank.ae/en/islamic/personal/cards/credit-cards/watani-credit-card";
@@ -512,31 +590,42 @@
       document.getElementById('privacyPolicy').style.visibility = 'hidden'
     }
 
-    var animateBgGradient = (function() {
-      var executed = false;
-      return function() {
-        if (!executed) {
-          executed = true;
-          document.getElementById('bgImagePlane').emit('bganimstart')
-        }
-      };
-    })();
+    // var animateBgGradient = (function() {
+    //   var executed = false;
+    //   return function() {
+    //     if (!executed) {
+    //       executed = true;
+    //       document.getElementById('bgImagePlane').emit('bganimstart')
+    //     }
+    //   };
+    // })();
 
     var initOptionsScreen = (function() {
       var executed = false;
       return function() {
         if (!executed) {
           executed = true;
-          document.getElementById('reloadIcon').style.visibility = "visible"
           document.getElementById('informationIcon').style.visibility = "visible"
+          document.getElementById('informationIcon').className = "infoAppear"
+          
+          setTimeout(function () {
+            document.getElementById('reloadIcon').style.visibility = "visible"
+            document.getElementById('reloadIcon').className = "reloadAppear"
+          }, 300)
+          
           document.getElementById('activateCardIcon1').style.visibility = "visible"
-          document.getElementById('checkYourBenefitsIcon').style.visibility = "visible"
+          document.getElementById('activateCardIcon1').className = "animationAppear1"
+          setTimeout(function () {
+            document.getElementById('checkYourBenefitsIcon').style.visibility = "visible"
+            document.getElementById('checkYourBenefitsIcon').className = "animationAppear2"
+          }, 300)
+
         }
       };
     })();
 
 
-    var initCheckOurBanefits = (function() {
+    var initCheckOurBenefits = (function() {
       var executed = false;
       return function() {
         if (!executed) {
@@ -544,22 +633,47 @@
           document.getElementById('activateCardIcon1').style.visibility = "hidden"
           document.getElementById('checkYourBenefitsIcon').style.visibility = "hidden"
           document.getElementById('activateYourCardIcon').style.visibility = "visible"
+
           document.getElementById('benefitsIcon').style.visibility = "visible"
-          document.getElementById('B0Plane').setAttribute('visible', true)
-          turnGreenGradientsVisible()
-          document.getElementById('B1Plane').setAttribute('visible', true)
-          document.getElementById('B2Plane').setAttribute('visible', true)
-          document.getElementById('B3Plane').setAttribute('visible', true)
-          document.getElementById('B4Plane').setAttribute('visible', true)
-          document.getElementById('B5Plane').setAttribute('visible', true)
-          document.getElementById('B6Plane').setAttribute('visible', true)
+          document.getElementById('benefitsIcon').className = "benefitsAppear"
+          
+          // turnGreenGradientsVisible()
+
+          setTimeout(function () {
+            document.getElementById('B1Plane').setAttribute('visible', true)
+            document.getElementById('B1GGPlane').setAttribute('visible', true)
+            setTimeout(function () {
+              document.getElementById('B2Plane').setAttribute('visible', true)
+              document.getElementById('B2GGPlane').setAttribute('visible', true)
+              setTimeout(function () {
+                document.getElementById('B3Plane').setAttribute('visible', true)
+                document.getElementById('B3GGPlane').setAttribute('visible', true)
+                setTimeout(function () {
+                  document.getElementById('B4Plane').setAttribute('visible', true)
+                  document.getElementById('B4GGPlane').setAttribute('visible', true)
+                  setTimeout(function () {
+                    document.getElementById('B5Plane').setAttribute('visible', true)
+                    document.getElementById('B5GGPlane').setAttribute('visible', true)
+                    setTimeout(function () {
+                      document.getElementById('B6Plane').setAttribute('visible', true)
+                      document.getElementById('B6GGPlane').setAttribute('visible', true)
+                      setTimeout(function () {
+                        document.getElementById('B0Plane').setAttribute('visible', true)
+                      }, 200)
+                    }, 200)
+                  }, 200)
+                }, 200)
+              }, 200)
+            }, 200)
+          }, 200)
+          
         }
       };
     })();
 
     function checkYourBenefitsIcon() {
       console.log("BenefitsOpen")
-      initCheckOurBanefits()
+      initCheckOurBenefits()
 
     }
 
@@ -567,17 +681,17 @@
     AFRAME.registerComponent('mytarget', {
       init: function () {
         this.el.addEventListener('targetFound', event => {
-          document.getElementById('example-scanning-overlay').style.display = 'none'
-          document.getElementById('logo').style.visibility = "hidden"
-          animateBgGradient()
-          
-
-
           console.log("target found");
 
+          document.getElementById('example-scanning-overlay').style.display = 'none'
+          document.getElementById('scanText').style.display = 'none'
+          document.getElementById('logo').style.visibility = "hidden"
+          video1.play()
+          // animateBgGradient()
+          
           setTimeout(function () {
             initOptionsScreen()
-          }, 2000)
+          }, 3000)
         });
         this.el.addEventListener('targetLost', event => {
           console.log("target lost");
