@@ -121,6 +121,28 @@
       z-index: 99999;
     }
 
+    #Text1 {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      width: 65%;
+      height: auto;
+      visibility: hidden;
+      z-index: 99999;
+    }
+
+    #Text2 {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 80%;
+      left: 50%;
+      width: 45%;
+      height: auto;
+      visibility: hidden;
+      z-index: 99999;
+    }
+
     #informationIcon {
       transform: translate(-50%, -50%);
       position: absolute;
@@ -279,6 +301,9 @@
     </div>
     <img id="logo" src="./assets/RAKIslamic-Logo.png" />
     <img id="cameraNotPermitted" src="./assets/CameraNotPermitted.png" />
+            
+    <img id="Text1" src="./assets/WataniCreditCardText.png">
+    <img id="Text2" src="./assets/PerfectlyEmirati.png">
 
     <img id="informationIcon" src="./assets/informationIcon.png" onclick="informationCard()"/>
     <img id="reloadIcon" src="./assets/reloadIcon.png" onclick="refreshPage()"/>
@@ -609,6 +634,20 @@
         if (!executed) {
           executed = true;
           document.getElementById('bgImagePlane').emit('bganimstart')
+          setTimeout(function () {
+            video1.play()
+          }, 2000)
+        }
+      };
+    })();
+
+    var makeTextVisible = (function() {
+      var executed = false;
+      return function() {
+        if (!executed) {
+          executed = true;
+          document.getElementById('Text1').style.visibility = "visible"
+          document.getElementById('Text2').style.visibility = "visible"
         }
       };
     })();
@@ -618,6 +657,8 @@
       return function() {
         if (!executed) {
           executed = true;
+          document.getElementById('Text1').style.visibility = "hidden"
+          document.getElementById('Text2').style.visibility = "hidden"
           document.getElementById('informationIcon').style.visibility = "visible"
           document.getElementById('informationIcon').className = "infoAppear"
           
@@ -700,7 +741,6 @@
     function checkYourBenefitsIcon() {
       console.log("BenefitsOpen")
       initCheckOurBenefits()
-
     }
 
 
@@ -712,11 +752,12 @@
           document.getElementById('example-scanning-overlay').style.display = 'none'
           document.getElementById('scanText').style.display = 'none'
           document.getElementById('logo').style.visibility = "hidden"
+          makeTextVisible()
           animateBgGradient()
           
-          setTimeout(function () {
-            video1.play()
-          }, 2000)
+          // setTimeout(function () {
+          //   video1.play()
+          // }, 2000)
           
           setTimeout(function () {
             initOptionsScreen()
