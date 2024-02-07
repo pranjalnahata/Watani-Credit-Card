@@ -16,6 +16,61 @@
   <style>
     body {
       margin: 0;
+      background-image: url('assets/SplashScreenBG.png');
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      background-position: top;
+    }
+
+    #splashScreenLogo {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 8%;
+      left: 20%;
+      width: 30%;
+      height: auto;
+      visibility: visible;
+      z-index: 99999;
+    }
+    #splashScreenCard {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      width: 80%;
+      height: auto;
+      visibility: visible;
+      z-index: 99999;
+    }
+    #Language1 {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 75%;
+      left: 75%;
+      width: auto;
+      height: 9%;
+      visibility: visible;
+      z-index: 99999;
+    }
+    #Language2 {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 81%;
+      left: 58%;
+      width: auto;
+      height: 5%;
+      visibility: visible;
+      z-index: 99999;
+    }
+    #Language3 {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 87%;
+      left: 58%;
+      width: auto;
+      height: 5%;
+      visibility: visible;
+      z-index: 99999;
     }
 
     .example-container {
@@ -301,6 +356,13 @@
         <div class="scanline"></div>
       </div>
     </div>
+    
+    <img id="splashScreenLogo" src="./assets/LogoWhite.png" />
+    <img id="splashScreenCard" src="./assets/SplashScreenCard.png" />
+    <img id="Language1" src="./assets/Language1.png" />
+    <img id="Language2" src="./assets/Language2.png" onclick="startAR()"/>
+    <img id="Language3" src="./assets/Language3.png" onclick="startAR()"/>
+
     <img id="logo" src="./assets/RAKIslamic-Logo.png" />
     <img id="cameraNotPermitted" src="./assets/CameraNotPermitted.png" />
             
@@ -318,7 +380,7 @@
     <img id="privacyPolicy" src="./assets/PrivacyPolicy.png" onclick="hideInformationCard()"/>
 
     <a-scene
-      mindar-image="imageTargetSrc: ./assets/CreditCard.mind; filterMinCF:0.001; filterBeta: 1000; showStats: false; uiScanning: #example-scanning-overlay; warmupTolerance: 1; missTolerance: 5"
+      mindar-image="imageTargetSrc: ./assets/CreditCard.mind; autoStart: false; filterMinCF:0.001; filterBeta: 1000; showStats: false; uiScanning: #example-scanning-overlay; warmupTolerance: 1; missTolerance: 5"
       loading-screen="dotsColor: red; backgroundColor: black" gesture-detector color-space="sRGB"
       renderer="colorManagement: true, physicallyCorrectLights, logarithmicDepthBuffer: true" xr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: false">
@@ -379,7 +441,7 @@
         <a-plane id="ccImagePlane" src="#ccimage" visible="false" click-detector material="transparent: true; shader: flat;" position="0 0 0.005" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
         <a-plane id="ccImageBlackPlane" src="#ccimageBlack" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0.005" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
         <a-plane id="ccimageGradientPlane" src="#ccimageGradient" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0.005" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
-        <a-plane id="ccimageNameChipPlane" src="#ccimageNameChip" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0.005" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
+        
         <!-- <a-entity id="animPlane" geometry="primitive:plane;width:1.7777;height:1;" position="0.1 0.02 0.1" material="shader:gif;src:#anim;alphaTest:0.5;"></a-entity> -->
         <!-- <a-plane id="ccimageAnimationPlane" src="#ccimageAnimation" visible="true" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane> -->
         
@@ -459,14 +521,15 @@
                  position="0.4 -0.95 0.011" height="0.3" width="0.25" rotation="0 0 0" scale="0 0 0"
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
 
-
+        <!-- <a-plane id="ccimageNameChipPlane" src="#ccimageNameChip" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0.005" height="2.1" width="2.1" rotation="0 0 0"></a-plane> -->
         <a-plane id="a-video1"
-          material="shader: chromakey; src: #video1; color: .0 .0 .0;" 
+          material="shader: chromakey; src: #video1; color: .0 .0 .0; transparent: true;" 
           position="0.2 0 0.01" 
           scale="2.665 1.5 1"
           visible="true"
         ></a-plane>
 
+        <a-plane id="ccimageNameChipPlane" src="#ccimageNameChip" visible="true" click-detector material="transparent: true;" position="0 0 0.015" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
 
       </a-entity>
     </a-scene>
@@ -482,7 +545,12 @@
     })();
 
     const sceneEl = document.querySelector('a-scene');
-    const arSystem = sceneEl.systems["mindar-image-system"];
+    let arSystem;
+    sceneEl.addEventListener('loaded', function () {
+      console.log('Loaded')
+	    arSystem = sceneEl.systems["mindar-image-system"];
+    });
+    // const arSystem = sceneEl.systems["mindar-image-system"];
     
     var video1 = document.getElementById("video1")
     video1.autoplay = false
@@ -491,6 +559,15 @@
     video1.addEventListener('canplay', () => {
       console.log('ready')
     })
+
+    function startAR() {
+      arSystem.start();
+      document.getElementById('Language1').style.visibility = 'hidden'
+      document.getElementById('Language2').style.visibility = 'hidden'
+      document.getElementById('Language3').style.visibility = 'hidden'
+      document.getElementById('splashScreenLogo').style.visibility = 'hidden'
+      document.getElementById('splashScreenCard').style.visibility = 'hidden'
+    }
 
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
       console.log("Permissions Granted")
@@ -638,12 +715,12 @@
         if (!executed) {
           executed = true;
           document.getElementById('bgImagePlane').emit('bganimstart')
-          // setTimeout(function () {
-          //   video1.play()
-          // }, 2000)
-          setInterval(function () {
+          setTimeout(function () {
             video1.play()
-          }, 4000)
+          }, 2000)
+          // setInterval(function () {
+          //   video1.play()
+          // }, 4000)
         }
       };
     })();
