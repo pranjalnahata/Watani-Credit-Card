@@ -196,7 +196,6 @@
       height: auto;
       visibility: hidden;
       z-index: 99999;
-      
     }
     .animationAppear1 {
       animation: appear1 1s ease-out 1;
@@ -209,11 +208,14 @@
         top: 82%
       }
     }
+    #activateCardIcon1:hover {
+      src: url("assets/ActivateYourCardSelectedIcon.png");
+    }
 
     #checkYourBenefitsIcon {
       transform: translate(-50%, -50%);
       position: absolute;
-      top: 89%;
+      top: 90%;
       left: 45%;
       width: 70%;
       height: auto;
@@ -225,10 +227,10 @@
     }
     @keyframes appear2 {
       0% {
-        top: 96%
+        top: 97%
       }
       100% {
-        top: 89%
+        top: 90%
       }
     }
 
@@ -248,8 +250,8 @@
       transform: translate(-50%, -50%);
       position: absolute;
       top: 10%;
-      left: 35%;
-      width: 50%;
+      left: 30%;
+      width: 40%;
       height: auto;
       visibility: hidden;
       z-index: 99999;
@@ -305,20 +307,20 @@
     <img id="Text1" src="./assets/WataniCreditCardText.png">
     <img id="Text2" src="./assets/PerfectlyEmirati.png">
 
-    <img id="informationIcon" src="./assets/informationIcon.png" onclick="informationCard()"/>
-    <img id="reloadIcon" src="./assets/reloadIcon.png" onclick="refreshPage()"/>
+    <img id="informationIcon" src="./assets/InfoIcon1.png" onclick="informationCard()"/>
+    <img id="reloadIcon" src="./assets/ReloadIcon1.png" onclick="refreshPage()"/>
 
-    <img id="activateCardIcon1" src="./assets/activateCardIcon1.png" onclick="activateCardIcon1()"/>
-    <img id="checkYourBenefitsIcon" src="./assets/checkYourBenefitsIcon.png" onclick="checkYourBenefitsIcon()"/>
+    <img id="activateCardIcon1" src="./assets/ActivateYourCardIcon.png" onclick="activateCardIcon1()"/>
+    <img id="checkYourBenefitsIcon" src="./assets/CheckOutBenefitsIcon.png" onclick="checkYourBenefitsIcon()"/>
 
-    <img id="activateYourCardIcon" src="./assets/activateYourCard.png" onclick="activateCardIcon1()"/>
-    <img id="benefitsIcon" src="./assets/Benefits.png" />
-    <img id="privacyPolicy" src="./assets/PrivacyPolicy.png" onclick="hideInformationCard()" />
+    <img id="activateYourCardIcon" src="./assets/ActivateYourCardIcon.png" onclick="activateCardIcon1()"/>
+    <img id="benefitsIcon" src="./assets/BenefitsIcon1.png" />
+    <img id="privacyPolicy" src="./assets/PrivacyPolicy.png" onclick="hideInformationCard()"/>
 
     <a-scene
       mindar-image="imageTargetSrc: ./assets/CreditCard.mind; filterMinCF:0.001; filterBeta: 1000; showStats: false; uiScanning: #example-scanning-overlay; warmupTolerance: 1; missTolerance: 5"
       loading-screen="dotsColor: red; backgroundColor: black" gesture-detector color-space="sRGB"
-      renderer="colorManagement: true, physicallyCorrectLights" xr-mode-ui="enabled: false"
+      renderer="colorManagement: true, physicallyCorrectLights, logarithmicDepthBuffer: true" xr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: false">
       <a-assets>
         <img id="ccimage" src="./assets/BgCard.png">
@@ -337,19 +339,19 @@
         <img id="B5" src="./assets/B5Icon.png">
         <img id="B6" src="./assets/B6Icon.png">
 
-        <img id="B1GG" src="./assets/B1GG.png">
-        <img id="B2GG" src="./assets/B2GG.png">
-        <img id="B3GG" src="./assets/B3GG.png">
-        <img id="B4GG" src="./assets/B4GG.png">
-        <img id="B5GG" src="./assets/B5GG.png">
-        <img id="B6GG" src="./assets/B6GG.png">
+        <img id="B1GG" src="./assets/GreenGradient.png">
+        <img id="B2GG" src="./assets/GreenGradient.png">
+        <img id="B3GG" src="./assets/GreenGradient.png">
+        <img id="B4GG" src="./assets/GreenGradient.png">
+        <img id="B5GG" src="./assets/GreenGradient.png">
+        <img id="B6GG" src="./assets/GreenGradient.png">
 
-        <img id="B1RG" src="./assets/B1RG.png">
-        <img id="B2RG" src="./assets/B2RG.png">
-        <img id="B3RG" src="./assets/B3RG.png">
-        <img id="B4RG" src="./assets/B4RG.png">
-        <img id="B5RG" src="./assets/B5RG.png">
-        <img id="B6RG" src="./assets/B6RG.png">
+        <img id="B1RG" src="./assets/RedGradient.png">
+        <img id="B2RG" src="./assets/RedGradient.png">
+        <img id="B3RG" src="./assets/RedGradient.png">
+        <img id="B4RG" src="./assets/RedGradient.png">
+        <img id="B5RG" src="./assets/RedGradient.png">
+        <img id="B6RG" src="./assets/RedGradient.png">
 
         <img id="B1Text" src="./assets/B1Text.png">
         <img id="B2Text" src="./assets/B2Text.png">
@@ -382,43 +384,46 @@
         <!-- <a-plane id="ccimageAnimationPlane" src="#ccimageAnimation" visible="true" click-detector material="transparent: true" position="0 0 0" height="2" width="2" rotation="0 0 0"></a-plane> -->
         
         <!-- Benefits Dots Plane -->
-        <a-plane id="B0Plane" visible="false" src="#B0" material="transparent: true; shader: flat;" 
+        <!-- <a-plane id="B0Plane" visible="false" src="#B0" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" opacity="0"
-                 animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
+                 animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane> -->
 
         <!-- Green Gradients -->
-        <a-plane id="B1GGPlane" visible="false" src="#B1GG" material="transparent: true; shader: flat;" 
+        <!-- <a-plane id="B1GGPlane" visible="false" src="#B1GG" material="transparent: true; shader: flat;" 
                  position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" scale="1 1 1" opacity="0"
+                 animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane> -->
+        <a-plane id="B1GGPlane" visible="false" src="#B1GG" material="transparent: true; shader: flat; depthTest: false"
+                 position="-0.4 -0.5 0.01" height="0.8" width="0.8" rotation="0 0 0" scale="1 1 1" opacity="0"
                  animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
-        <a-plane id="B2GGPlane" visible="false" src="#B2GG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" scale="1 1 1" opacity="0"
+        <a-plane id="B2GGPlane" visible="false" src="#B2GG" material="transparent: true; shader: flat; depthTest: false" 
+                 position="0 -0.5 0.0102" height="0.8" width="0.8" rotation="0 0 0" scale="1 1 1" opacity="0"
                  animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
-        <a-plane id="B3GGPlane" visible="false" src="#B3GG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" scale="1 1 1" opacity="0"
+        <a-plane id="B3GGPlane" visible="false" src="#B3GG" material="transparent: true; shader: flat; depthTest: false" 
+                 position="0.4 -0.5 0.0104" height="0.8" width="0.8" rotation="0 0 0" scale="1 1 1" opacity="0"
                  animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
-        <a-plane id="B4GGPlane" visible="false" src="#B4GG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" scale="1 1 1" opacity="0"
+        <a-plane id="B4GGPlane" visible="false" src="#B4GG" material="transparent: true; shader: flat; depthTest: false" 
+                 position="-0.4 -0.9 0.0106" height="0.8" width="0.8" rotation="0 0 0" scale="1 1 1" opacity="0"
                  animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
-        <a-plane id="B5GGPlane" visible="false" src="#B5GG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" scale="1 1 1" opacity="0"
+        <a-plane id="B5GGPlane" visible="false" src="#B5GG" material="transparent: true; shader: flat; depthTest: false" 
+                 position="0 -0.9 0.0108" height="0.8" width="0.8" rotation="0 0 0" scale="1 1 1" opacity="0"
                  animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
-        <a-plane id="B6GGPlane" visible="false" src="#B6GG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0" scale="1 1 1" opacity="0"
+        <a-plane id="B6GGPlane" visible="false" src="#B6GG" material="transparent: true; shader: flat; depthTest: false" 
+                 position="0.4 -0.9 0.0109" height="0.8" width="0.8" rotation="0 0 0" scale="1 1 1" opacity="0"
                  animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
 
         <!-- Red Gradients -->
-        <a-plane id="B1RGPlane" visible="false" src="#B1RG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B2RGPlane" visible="false" src="#B2RG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B3RGPlane" visible="false" src="#B3RG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B4RGPlane" visible="false" src="#B4RG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B5RGPlane" visible="false" src="#B5RG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
-        <a-plane id="B6RGPlane" visible="false" src="#B6RG" material="transparent: true; shader: flat;" 
-                 position="0 0 0.01" height="2.3" width="2.3" rotation="0 0 0"></a-plane>
+        <a-plane id="B1RGPlane" visible="false" src="#B1RG" material="transparent: true; shader: flat; depthTest: false" 
+                 position="-0.4 -0.5 0.01" height="0.8" width="0.8" rotation="0 0 0"></a-plane>
+        <a-plane id="B2RGPlane" visible="false" src="#B2RG" material="transparent: true; shader: flat; depthTest: false" 
+                 position="0 -0.5 0.0102" height="0.8" width="0.8" rotation="0 0 0"></a-plane>
+        <a-plane id="B3RGPlane" visible="false" src="#B3RG" material="transparent: true; shader: flat; depthTest: false" 
+                 position="0.4 -0.5 0.0104" height="0.8" width="0.8" rotation="0 0 0"></a-plane>
+        <a-plane id="B4RGPlane" visible="false" src="#B4RG" material="transparent: true; shader: flat; depthTest: false" 
+                 position="-0.4 -0.9 0.0106" height="0.8" width="0.8" rotation="0 0 0"></a-plane>
+        <a-plane id="B5RGPlane" visible="false" src="#B5RG" material="transparent: true; shader: flat; depthTest: false" 
+                 position="0 -0.9 0.0108" height="0.8" width="0.8" rotation="0 0 0"></a-plane>
+        <a-plane id="B6RGPlane" visible="false" src="#B6RG" material="transparent: true; shader: flat; depthTest: false" 
+                 position="0.4 -0.9 0.0109" height="0.8" width="0.8" rotation="0 0 0"></a-plane>
 
         <!-- Text Planes -->
         <a-plane id="B1TextPlane" visible="false" src="#B1Text" material="transparent: true; alphaTest: 0.1; shader: flat;"
@@ -436,29 +441,29 @@
            
         <!-- Benefits Icons Planes -->
         <a-plane id="B1Plane" visible="false" src="#B1" material="transparent: true; shader: flat;" class="clickable"
-                 position="-0.8 0.13 0.011" height="0.3" width="0.3" rotation="0 0 0" scale="0 0 0"
+                 position="-0.4 -0.55 0.011" height="0.3" width="0.3" rotation="0 0 0" scale="0 0 0"
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B2Plane" visible="false" src="#B2" material="transparent: true; shader: flat;" class="clickable"
-                 position="-0.66 -0.36 0.011" height="0.3" width="0.25" rotation="0 0 0" scale="0 0 0"
+                 position="0 -0.55 0.011" height="0.3" width="0.25" rotation="0 0 0" scale="0 0 0"
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B3Plane" visible="false" src="#B3" material="transparent: true; shader: flat;" class="clickable"
-                 position="-0.26 -0.64 0.011" height="0.3" width="0.32" rotation="0 0 0" scale="0 0 0"
+                 position="0.4 -0.55 0.011" height="0.3" width="0.32" rotation="0 0 0" scale="0 0 0"
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B4Plane" visible="false" src="#B4" material="transparent: true; shader: flat;" class="clickable" 
-                 position="0.28 -0.64 0.011" height="0.3" width="0.25" rotation="0 0 0" scale="0 0 0"
+                 position="-0.4 -0.95 0.011" height="0.3" width="0.25" rotation="0 0 0" scale="0 0 0"
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B5Plane" visible="false" src="#B5" material="transparent: true; shader: flat;" class="clickable"
-                 position="0.65 -0.36 0.011" height="0.3" width="0.23" rotation="0 0 0" scale="0 0 0"
+                 position="0 -0.95 0.011" height="0.3" width="0.23" rotation="0 0 0" scale="0 0 0"
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B6Plane" visible="false" src="#B6" material="transparent: true; shader: flat;" class="clickable"
-                 position="0.8 0.13 0.011" height="0.3" width="0.25" rotation="0 0 0" scale="0 0 0"
+                 position="0.4 -0.95 0.011" height="0.3" width="0.25" rotation="0 0 0" scale="0 0 0"
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 200; autoplay: false; startEvents: scaleAnimStart"></a-plane>
 
 
         <a-plane id="a-video1"
-          material="shader: chromakey; src: #video1; color: .1 .1 .1" 
-          position="0.1 0.02 0.1" 
-          scale="1.777 1 1"
+          material="shader: chromakey; src: #video1; color: .0 .0 .0;" 
+          position="0.2 0 0.01" 
+          scale="2.665 1.5 1"
           visible="true"
         ></a-plane>
 
@@ -529,7 +534,6 @@
 
 
     // BENEFITS CLICK DETECTION START
-    
     document.getElementById('B1Plane').addEventListener("click", event => {
       console.log('B1 Tapped')
       hideAllTextPlanes()
@@ -634,9 +638,12 @@
         if (!executed) {
           executed = true;
           document.getElementById('bgImagePlane').emit('bganimstart')
-          setTimeout(function () {
+          // setTimeout(function () {
+          //   video1.play()
+          // }, 2000)
+          setInterval(function () {
             video1.play()
-          }, 2000)
+          }, 4000)
         }
       };
     })();
@@ -724,8 +731,8 @@
                       document.getElementById('B6GGPlane').setAttribute('visible', true)
                       document.getElementById('B6GGPlane').emit('scaleAnimStart')
                       setTimeout(function () {
-                        document.getElementById('B0Plane').setAttribute('visible', true)
-                        document.getElementById('B0Plane').emit('scaleAnimStart')
+                        // document.getElementById('B0Plane').setAttribute('visible', true)
+                        // document.getElementById('B0Plane').emit('scaleAnimStart')
                       }, 300)
                     }, 300)
                   }, 300)
