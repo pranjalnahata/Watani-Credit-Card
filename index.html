@@ -16,10 +16,18 @@
   <style>
     body {
       margin: 0;
-      background-image: url('assets/SplashScreenBG.png');
+      /* background-image: url('assets/SplashScreenBG.png');
       background-size: 100% auto;
       background-repeat: no-repeat;
-      background-position: top;
+      background-position: top; */
+    }
+
+    .container1 img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: top;
+      z-index: 99999;
     }
 
     #splashScreenLogo {
@@ -45,7 +53,7 @@
     #Language1 {
       transform: translate(-50%, -50%);
       position: absolute;
-      top: 75%;
+      top: 73%;
       left: 75%;
       width: auto;
       height: 9%;
@@ -55,12 +63,12 @@
     #Language2 {
       transform: translate(-50%, -50%);
       position: absolute;
-      top: 81%;
+      top: 80%;
       left: 58%;
       width: auto;
       height: 5%;
       visibility: visible;
-      z-index: 99999;
+      z-index: 999999;
     }
     #Language3 {
       transform: translate(-50%, -50%);
@@ -70,7 +78,7 @@
       width: auto;
       height: 5%;
       visibility: visible;
-      z-index: 99999;
+      z-index: 999999;
     }
 
     .example-container {
@@ -357,6 +365,9 @@
       </div>
     </div>
     
+    <div class="container1">
+      <img id="SplashScreenBG" src="./assets/SplashScreenBG.png">
+    </div>
     <img id="splashScreenLogo" src="./assets/LogoWhite.png" />
     <img id="splashScreenCard" src="./assets/SplashScreenCard.png" />
     <img id="Language1" src="./assets/Language1.png" />
@@ -380,8 +391,8 @@
     <img id="privacyPolicy" src="./assets/PrivacyPolicy.png" onclick="hideInformationCard()"/>
 
     <a-scene
-      mindar-image="imageTargetSrc: ./assets/CreditCard.mind; autoStart: false; filterMinCF:0.001; filterBeta: 1000; showStats: false; uiScanning: #example-scanning-overlay; warmupTolerance: 1; missTolerance: 5"
-      loading-screen="dotsColor: red; backgroundColor: black" gesture-detector color-space="sRGB"
+      mindar-image="imageTargetSrc: ./assets/CreditCard.mind; autoStart: false; filterMinCF:0.0001; filterBeta: 0.001; showStats: false; uiScanning: #example-scanning-overlay; warmupTolerance: 1; missTolerance: 5"
+      loading-screen="dotsColor: red; backgroundColor: black; enabled: false" gesture-detector color-space="sRGB"
       renderer="colorManagement: true, physicallyCorrectLights, logarithmicDepthBuffer: true" xr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: false">
       <a-assets>
@@ -562,6 +573,7 @@
 
     function startAR() {
       arSystem.start();
+      document.getElementById('SplashScreenBG').style.visibility = 'hidden'
       document.getElementById('Language1').style.visibility = 'hidden'
       document.getElementById('Language2').style.visibility = 'hidden'
       document.getElementById('Language3').style.visibility = 'hidden'
