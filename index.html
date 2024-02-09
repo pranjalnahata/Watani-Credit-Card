@@ -435,9 +435,9 @@
         <img id="B6Text" src="./assets/B6Text.png">
 
         <!-- <video id="video1" crossorigin="anonymous" preload="auto" autoplay="false" style="opacity: 1;" src="./assets/Anim.mp4" playsinline muted></video> -->
-        <video id="video1" crossorigin="anonymous" preload="auto" playsinline webkit-playsinline>
-          <source src="./assets/Animation1Encoded.mov" type='video/mp4; codecs=hvc1'>
-          <source src="./assets/Animation1Encoded.webm" type="video/webm">
+        <video id="video1" crossorigin="anonymous" preload="auto" muted playsinline webkit-playsinline>
+          <source src="./assets/Comp2.mp4" type='video/mp4;codecs=hvc1'>
+          <source src="./assets/Comp2.webm" type="video/webm">
         </video>
         
       </a-assets>
@@ -540,8 +540,8 @@
           animation="property: position; from: 0.2 0 0.01; to: 0.2 0 1; loop: false; dur: 1000; autoplay: false; startEvents: bringItUp"
         ></a-plane> -->
         <a-plane id="a-video1"
-          material="shader: flat; src: #video1; transparent: true; alphaTest: 0.5;" 
-          position="0.21 0 0.01" 
+          material="shader: flat; src: #video1; transparent: true;" 
+          position="0.23 -0.015 0.01" 
           scale="2.665 1.5 1"
           visible="false"
           animation="property: scale; from: 2.665 1.5 1; to: 3.9975 2.25 1; loop: false; dur: 3000; easing: easeInOutQuad; autoplay: false; startEvents: bringItUp"
