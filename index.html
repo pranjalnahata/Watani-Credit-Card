@@ -9,7 +9,6 @@
   <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/dist/mindar-image.prod.js"></script>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-  <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
   <script src="./dist/aframe-gif-shader.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script> -->
 
@@ -60,6 +59,17 @@
       visibility: visible;
       z-index: 99999;
     }
+    .LangAppear1 {
+      animation: LAppear1 1s ease-out 1;
+    }
+    @keyframes LAppear1 {
+      0% {
+        top: 80%
+      }
+      100% {
+        top: 73%
+      }
+    }
     #Language2 {
       transform: translate(-50%, -50%);
       position: absolute;
@@ -67,8 +77,19 @@
       left: 58%;
       width: auto;
       height: 5%;
-      visibility: visible;
+      visibility: hidden;
       z-index: 999999;
+    }
+    .LangAppear2 {
+      animation: LAppear2 1s ease-out 1;
+    }
+    @keyframes LAppear2 {
+      0% {
+        top: 87%
+      }
+      100% {
+        top: 80%
+      }
     }
     #Language3 {
       transform: translate(-50%, -50%);
@@ -77,8 +98,19 @@
       left: 58%;
       width: auto;
       height: 5%;
-      visibility: visible;
+      visibility: hidden;
       z-index: 999999;
+    }
+    .LangAppear3 {
+      animation: LAppear3 1s ease-out 1;
+    }
+    @keyframes LAppear3 {
+      0% {
+        top: 94%
+      }
+      100% {
+        top: 87%
+      }
     }
 
     .example-container {
@@ -355,7 +387,7 @@
   </style>
 </head>
 
-<body>
+<body onload="pageLoaded()">
   <div class="example-container">
     <div id="example-scanning-overlay" class="hidden">
       <div class="inner">
@@ -396,14 +428,11 @@
       renderer="colorManagement: true, physicallyCorrectLights, logarithmicDepthBuffer: true" xr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: false">
       <a-assets>
-        <img id="ccimage" src="./assets/BgCard.png">
         <img id="ccimageBlack" src="./assets/BgCardBlack1.png">
         <img id="ccimageGradient" src="./assets/BgCardGradient.png">
         <img id="ccimageNameChip" src="./assets/BgCardNameChip1.png">
         <img id="cardGraphic" src="./assets/CardGraphic1.png">
-        <!-- <img id="ccimageAnimation" src="./assets/logo_2_alpha.gif"> -->
         <img id="bgimage" src="./assets/BgGradient.png">
-        <img id="benefitsDetails" src="./assets/benefitsDetails.png">
 
         <img id="B0" src="./assets/SemiCircleDots.png">
         <img id="B1" src="./assets/B1Icon.png">
@@ -434,11 +463,79 @@
         <img id="B5Text" src="./assets/B5Text.png">
         <img id="B6Text" src="./assets/B6Text.png">
 
-        <!-- <video id="video1" crossorigin="anonymous" preload="auto" autoplay="false" style="opacity: 1;" src="./assets/Anim.mp4" playsinline muted></video> -->
-        <video id="video1" crossorigin="anonymous" preload="auto" muted playsinline webkit-playsinline>
-          <source src="./assets/Comp2.mp4" type='video/mp4;codecs=hvc1'>
-          <source src="./assets/Comp2.webm" type="video/webm">
-        </video>
+        <img id="AnimSeq1" src="./assets/AnimSequence/Anim1.png">
+        <img id="AnimSeq2" src="./assets/AnimSequence/Anim2.png">
+        <img id="AnimSeq3" src="./assets/AnimSequence/Anim3.png">
+        <img id="AnimSeq4" src="./assets/AnimSequence/Anim4.png">
+        <img id="AnimSeq5" src="./assets/AnimSequence/Anim5.png">
+        <img id="AnimSeq6" src="./assets/AnimSequence/Anim6.png">
+        <img id="AnimSeq7" src="./assets/AnimSequence/Anim7.png">
+        <img id="AnimSeq8" src="./assets/AnimSequence/Anim8.png">
+        <img id="AnimSeq9" src="./assets/AnimSequence/Anim9.png">
+        <img id="AnimSeq10" src="./assets/AnimSequence/Anim10.png">
+        <img id="AnimSeq11" src="./assets/AnimSequence/Anim11.png">
+        <img id="AnimSeq12" src="./assets/AnimSequence/Anim12.png">
+        <img id="AnimSeq13" src="./assets/AnimSequence/Anim13.png">
+        <img id="AnimSeq14" src="./assets/AnimSequence/Anim14.png">
+        <img id="AnimSeq15" src="./assets/AnimSequence/Anim15.png">
+        <img id="AnimSeq16" src="./assets/AnimSequence/Anim16.png">
+        <img id="AnimSeq17" src="./assets/AnimSequence/Anim17.png">
+        <img id="AnimSeq18" src="./assets/AnimSequence/Anim18.png">
+        <img id="AnimSeq19" src="./assets/AnimSequence/Anim19.png">
+        <img id="AnimSeq20" src="./assets/AnimSequence/Anim20.png">
+        <img id="AnimSeq21" src="./assets/AnimSequence/Anim21.png">
+        <img id="AnimSeq22" src="./assets/AnimSequence/Anim22.png">
+        <img id="AnimSeq23" src="./assets/AnimSequence/Anim23.png">
+        <img id="AnimSeq24" src="./assets/AnimSequence/Anim24.png">
+        <img id="AnimSeq25" src="./assets/AnimSequence/Anim25.png">
+        <img id="AnimSeq26" src="./assets/AnimSequence/Anim26.png">
+        <img id="AnimSeq27" src="./assets/AnimSequence/Anim27.png">
+        <img id="AnimSeq28" src="./assets/AnimSequence/Anim28.png">
+        <img id="AnimSeq29" src="./assets/AnimSequence/Anim29.png">
+        <img id="AnimSeq30" src="./assets/AnimSequence/Anim30.png">
+        <img id="AnimSeq31" src="./assets/AnimSequence/Anim31.png">
+        <img id="AnimSeq32" src="./assets/AnimSequence/Anim32.png">
+        <img id="AnimSeq33" src="./assets/AnimSequence/Anim33.png">
+        <img id="AnimSeq34" src="./assets/AnimSequence/Anim34.png">
+        <img id="AnimSeq35" src="./assets/AnimSequence/Anim35.png">
+        <img id="AnimSeq36" src="./assets/AnimSequence/Anim36.png">
+        <img id="AnimSeq37" src="./assets/AnimSequence/Anim37.png">
+        <img id="AnimSeq38" src="./assets/AnimSequence/Anim38.png">
+        <img id="AnimSeq39" src="./assets/AnimSequence/Anim39.png">
+        <img id="AnimSeq40" src="./assets/AnimSequence/Anim40.png">
+        <img id="AnimSeq41" src="./assets/AnimSequence/Anim41.png">
+        <img id="AnimSeq42" src="./assets/AnimSequence/Anim42.png">
+        <img id="AnimSeq43" src="./assets/AnimSequence/Anim43.png">
+        <img id="AnimSeq44" src="./assets/AnimSequence/Anim44.png">
+        <img id="AnimSeq45" src="./assets/AnimSequence/Anim45.png">
+        <img id="AnimSeq46" src="./assets/AnimSequence/Anim46.png">
+        <img id="AnimSeq47" src="./assets/AnimSequence/Anim47.png">
+        <img id="AnimSeq48" src="./assets/AnimSequence/Anim48.png">
+        <img id="AnimSeq49" src="./assets/AnimSequence/Anim49.png">
+        <img id="AnimSeq50" src="./assets/AnimSequence/Anim50.png">
+        <img id="AnimSeq51" src="./assets/AnimSequence/Anim51.png">
+        <img id="AnimSeq52" src="./assets/AnimSequence/Anim52.png">
+        <img id="AnimSeq53" src="./assets/AnimSequence/Anim53.png">
+        <img id="AnimSeq54" src="./assets/AnimSequence/Anim54.png">
+        <img id="AnimSeq55" src="./assets/AnimSequence/Anim55.png">
+        <img id="AnimSeq56" src="./assets/AnimSequence/Anim56.png">
+        <img id="AnimSeq57" src="./assets/AnimSequence/Anim57.png">
+        <img id="AnimSeq58" src="./assets/AnimSequence/Anim58.png">
+        <img id="AnimSeq59" src="./assets/AnimSequence/Anim59.png">
+        <img id="AnimSeq60" src="./assets/AnimSequence/Anim60.png">
+        <img id="AnimSeq61" src="./assets/AnimSequence/Anim61.png">
+        <img id="AnimSeq62" src="./assets/AnimSequence/Anim62.png">
+        <img id="AnimSeq63" src="./assets/AnimSequence/Anim63.png">
+        <img id="AnimSeq64" src="./assets/AnimSequence/Anim64.png">
+        <img id="AnimSeq65" src="./assets/AnimSequence/Anim65.png">
+        <img id="AnimSeq66" src="./assets/AnimSequence/Anim66.png">
+        <img id="AnimSeq67" src="./assets/AnimSequence/Anim67.png">
+        <img id="AnimSeq68" src="./assets/AnimSequence/Anim68.png">
+        <img id="AnimSeq69" src="./assets/AnimSequence/Anim69.png">
+        <img id="AnimSeq70" src="./assets/AnimSequence/Anim70.png">
+        <img id="AnimSeq71" src="./assets/AnimSequence/Anim71.png">
+        <img id="AnimSeq72" src="./assets/AnimSequence/Anim72.png">
+        <img id="AnimSeq73" src="./assets/AnimSequence/Anim73.png">
         
       </a-assets>
 
@@ -449,7 +546,6 @@
 
         <a-plane id="bgImagePlane" src="#bgimage" material="transparent: true; opacity: 0" position="0 0 0" height="2" width="2" rotation="0 0 0"
           animation="property: opacity; from: 0.0; to: 1.0; loop: false; dur: 2000; autoplay: false; startEvents: bganimstart"></a-plane>
-        <a-plane id="ccImagePlane" src="#ccimage" visible="false" click-detector material="transparent: true; shader: flat;" position="0 0 0.005" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
         <a-plane id="ccImageBlackPlane" src="#ccimageBlack" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0.005" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
         <a-plane id="ccimageGradientPlane" src="#ccimageGradient" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0.005" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
         
@@ -519,43 +615,23 @@
                  position="0 0.75 0.011" height="0.3" width="0.25" rotation="0 0 0" scale="0 0 0"
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 800; autoplay: false; easing: easeOutElastic; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B3Plane" visible="false" src="#B3" material="transparent: true; shader: flat;" class="clickable"
-                 position="0.4 0.55 0.011" height="0.3" width="0.32" rotation="0 0 0" scale="0 0 0"
+                 position="0.4 0.55 0.011" height="0.3" width="0.31" rotation="0 0 0" scale="0 0 0"
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 800; autoplay: false; easing: easeOutElastic; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B4Plane" visible="false" src="#B4" material="transparent: true; shader: flat;" class="clickable" 
                  position="-0.4 -0.55 0.011" height="0.3" width="0.25" rotation="0 0 0" scale="0 0 0"
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 800; autoplay: false; easing: easeOutElastic; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B5Plane" visible="false" src="#B5" material="transparent: true; shader: flat;" class="clickable"
-                 position="0 -0.75 0.011" height="0.32" width="0.25" rotation="0 0 0" scale="0 0 0"
+                 position="0 -0.75 0.011" height="0.36" width="0.27" rotation="0 0 0" scale="0 0 0"
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 800; autoplay: false; easing: easeOutElastic; startEvents: scaleAnimStart"></a-plane>
         <a-plane id="B6Plane" visible="false" src="#B6" material="transparent: true; shader: flat;" class="clickable"
-                 position="0.4 -0.55 0.011" height="0.3" width="0.25" rotation="0 0 0" scale="0 0 0"
+                 position="0.4 -0.55 0.011" height="0.32" width="0.25" rotation="0 0 0" scale="0 0 0"
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 800; autoplay: false; easing: easeOutElastic; startEvents: scaleAnimStart"></a-plane>
 
-        <!-- <a-plane id="ccimageNameChipPlane" src="#ccimageNameChip" visible="true" click-detector material="transparent: true; shader: flat;" position="0 0 0.005" height="2.1" width="2.1" rotation="0 0 0"></a-plane> -->
-        <!-- <a-plane id="a-video1"
-          material="shader: chromakey; src: #video1; color: .0 .0 .0; transparent: true;" 
-          position="0.2 0 0.01" 
-          scale="2.665 1.5 1"
-          visible="true"
-          animation="property: position; from: 0.2 0 0.01; to: 0.2 0 1; loop: false; dur: 1000; autoplay: false; startEvents: bringItUp"
-        ></a-plane> -->
-        <a-plane id="a-video1"
-          material="shader: flat; src: #video1; transparent: true;" 
-          position="0.23 -0.015 0.01" 
-          scale="2.665 1.5 1"
-          visible="false"
+        <a-plane id="animSeqPlane" src="#AnimSeq72" visible="false" material="shader: flat; transparent: true; alphaTest: 0.1;" 
+          position="0.23 -0.015 0.01" scale="2.665 1.5 1" rotation="0 0 -1"
           animation="property: scale; from: 2.665 1.5 1; to: 3.9975 2.25 1; loop: false; dur: 3000; easing: easeInOutQuad; autoplay: false; startEvents: bringItUp"
           animation__2="property: scale; from: 3.9975 2.25 1; to: 2.665 1.5 1; loop: false; dur: 3000; easing: easeInOutQuad; autoplay: false; startEvents: bringItDown"
         ></a-plane>
-
-        <!-- <a-plane id="a-video1"
-          material="shader: flat; src: #video1; transparent: true; alphaTest: 0.5;" 
-          position="0.21 0 0.01" 
-          scale="2.665 1.5 1"
-          visible="false"
-          animation="property: position; from: 0.21 0 0.01; to: 0.21 0 1; loop: false; dur: 1500; easing: easeInOutQuad; autoplay: false; startEvents: bringItUp"
-          animation__2="property: position; from: 0.21 0 1; to: 0.21 0 0.01; loop: false; dur: 1500; easing: easeInOutQuad; autoplay: false; startEvents: bringItDown"
-        ></a-plane> -->
 
         <a-plane id="cardGraphicPlane" src="#cardGraphic" visible="true" click-detector material="transparent: true; alphaTest: 0.1;" position="0 0 0.015" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
         <a-plane id="ccimageNameChipPlane" src="#ccimageNameChip" visible="true" click-detector material="transparent: true; alphaTest: 0.1;" position="0 0 0.015" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
@@ -573,21 +649,25 @@
       document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
     })();
 
+    function pageLoaded() {
+      console.log('Page Loaded')
+      document.getElementById('Language1').className = "LangAppear1"
+      setTimeout(function() {
+        document.getElementById('Language2').style.visibility = "visible"
+        document.getElementById('Language2').className = "LangAppear2"
+      },300)
+      setTimeout(function() {
+        document.getElementById('Language3').style.visibility = "visible"
+        document.getElementById('Language3').className = "LangAppear3"
+      },600)
+    }
+
     const sceneEl = document.querySelector('a-scene');
     let arSystem;
     sceneEl.addEventListener('loaded', function () {
+      arSystem = sceneEl.systems["mindar-image-system"];
       console.log('Loaded')
-	    arSystem = sceneEl.systems["mindar-image-system"];
     });
-    // const arSystem = sceneEl.systems["mindar-image-system"];
-    
-    var video1 = document.getElementById("video1")
-    video1.autoplay = false
-    video1.preload = "auto"
-    var aVideo1 = document.getElementById("a-video1")
-    video1.addEventListener('canplay', () => {
-      console.log('ready')
-    })
 
     function startAR() {
       arSystem.start();
@@ -597,7 +677,6 @@
       document.getElementById('Language3').style.visibility = 'hidden'
       document.getElementById('splashScreenLogo').style.visibility = 'hidden'
       document.getElementById('splashScreenCard').style.visibility = 'hidden'
-      video1.play()
     }
 
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
@@ -616,9 +695,8 @@
       document.getElementById('B4TextPlane').setAttribute('visible', false)
       document.getElementById('B5TextPlane').setAttribute('visible', false)
       document.getElementById('B6TextPlane').setAttribute('visible', false)
-      document.getElementById('a-video1').setAttribute('visible', false)
+      document.getElementById('animSeqPlane').setAttribute('visible', false)
 
-      document.getElementById('ccImagePlane').setAttribute('visible', false)
       document.getElementById('cardGraphicPlane').setAttribute('visible', false)
       document.getElementById('ccimageGradientPlane').setAttribute('visible', true)
       document.getElementById('ccimageNameChipPlane').setAttribute('visible', false)
@@ -741,6 +819,24 @@
       document.getElementById('privacyPolicy').style.visibility = 'hidden'
     }
 
+    var timer;
+    var count = 0;
+
+    function playAnimSeq() {
+      if (count > 72) {
+        clearInterval(timer)
+      } else {
+        count++;
+        document.getElementById('animSeqPlane').setAttribute("src","#AnimSeq" + count + "");
+        // console.log('Animating ' + count + ' frame')
+      }
+    }
+
+    function StopAnimation() {
+      count = 0;
+      clearTimeout(timer);
+    }
+
     var animateBgGradient = (function() {
       var executed = false;
       return function() {
@@ -749,22 +845,19 @@
           document.getElementById('bgImagePlane').emit('bganimstart')
           setTimeout(function () {
             document.getElementById('cardGraphicPlane').setAttribute('visible', false)
-            document.getElementById('a-video1').setAttribute('visible', true)
-            document.getElementById('a-video1').emit('bringItUp')
+            document.getElementById('animSeqPlane').setAttribute('visible', true)
+            document.getElementById('animSeqPlane').emit('bringItUp')
           }, 2300)
           setTimeout(function () {
-            video1.play()
+            timer = setInterval(playAnimSeq, 45);
           }, 5500)
           setTimeout(function () {
-            document.getElementById('a-video1').emit('bringItDown')
-          }, 7500)
+            document.getElementById('animSeqPlane').emit('bringItDown')
+          }, 9000)
           setTimeout(function () {
             document.getElementById('cardGraphicPlane').setAttribute('visible', true)
-            document.getElementById('a-video1').setAttribute('visible', false)
-          }, 10500)
-          // setInterval(function () {
-          //   video1.play()
-          // }, 4000)
+            document.getElementById('animSeqPlane').setAttribute('visible', false)
+          }, 12000)
         }
       };
     })();
@@ -889,7 +982,7 @@
           
           setTimeout(function () {
             initOptionsScreen()
-          }, 10500)
+          }, 12000)
         });
         this.el.addEventListener('targetLost', event => {
           console.log("target lost");
