@@ -627,6 +627,7 @@
           position="0.23 -0.015 0.01" scale="2.665 1.5 1" rotation="0 0 -1"
           animation="property: scale; from: 2.665 1.5 1; to: 3.9975 2.25 1; loop: false; dur: 3000; easing: easeInOutQuad; autoplay: false; startEvents: bringItUp"
           animation__2="property: scale; from: 3.9975 2.25 1; to: 2.665 1.5 1; loop: false; dur: 3000; easing: easeInOutQuad; autoplay: false; startEvents: bringItDown"
+          animation__3="property: rotation; from: 0 0 -1; to: 0 0 -361; loop: false; dur: 2600; easing: easeInOutQuad; autoplay: false; startEvents: rotateAnim"
         ></a-plane>
 
         <a-plane id="cardGraphicPlane" src="#cardGraphic" visible="true" click-detector material="transparent: true; alphaTest: 0.1;" position="0 0 0.015" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
@@ -843,6 +844,9 @@
             document.getElementById('cardGraphicPlane').setAttribute('visible', false)
             document.getElementById('animSeqPlane').setAttribute('visible', true)
             document.getElementById('animSeqPlane').emit('bringItUp')
+            setTimeout(function () {
+              document.getElementById('animSeqPlane').emit('rotateAnim')
+            },200)
           }, 2300)
           setTimeout(function () {
             timer = setInterval(playAnimSeq, 45);
