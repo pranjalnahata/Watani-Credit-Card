@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <!-- <link rel="shortcut icon" type="image/png" href="./assets/Behrouz-Logo.png" /> -->
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
   <title>Watani Credit Card</title>
   <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/dist/mindar-image.prod.js"></script>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
@@ -404,6 +404,8 @@
 
     <img id="logo" src="./assets/RAKIslamic-Logo.png" />
     <img id="cameraNotPermitted" src="./assets/CameraNotPermitted.png" />
+
+    <audio id="BgAudio" src="./assets/BG.mp3"></audio>
             
     <img id="Text1" src="./assets/WataniCreditCardText.png">
     <img id="Text2" src="./assets/PerfectlyEmirati.png">
@@ -840,20 +842,25 @@
       return function() {
         if (!executed) {
           executed = true;
-          document.getElementById('bgImagePlane').emit('bganimstart')
-          setTimeout(function () {
-            // document.getElementById('cardGraphicPlane').setAttribute('visible', false)
-            document.getElementById('animSeqPlane').setAttribute('visible', true)
-            // document.getElementById('animSeqPlane').emit('bringItUp')
-            timer = setInterval(playAnimSeq, 45);
-          }, 2400)
-          setTimeout(function () {
-            document.getElementById('animSeqPlane').emit('bringItDown')
-          }, 8000)
-          setTimeout(function () {
-            document.getElementById('cardGraphicPlane').setAttribute('visible', true)
-            document.getElementById('animSeqPlane').setAttribute('visible', false)
-          }, 11000)
+          document.getElementById('BgAudio').play()
+          setTimeout(function() {
+
+            document.getElementById('bgImagePlane').emit('bganimstart')
+            setTimeout(function () {
+              // document.getElementById('cardGraphicPlane').setAttribute('visible', false)
+              document.getElementById('animSeqPlane').setAttribute('visible', true)
+              // document.getElementById('animSeqPlane').emit('bringItUp')
+              timer = setInterval(playAnimSeq, 45);
+            }, 2400)
+            setTimeout(function () {
+              document.getElementById('animSeqPlane').emit('bringItDown')
+            }, 8000)
+            setTimeout(function () {
+              document.getElementById('cardGraphicPlane').setAttribute('visible', true)
+              document.getElementById('animSeqPlane').setAttribute('visible', false)
+            }, 11000)
+
+          },1200)
         }
       };
     })();
