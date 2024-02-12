@@ -433,8 +433,8 @@
         <img id="B0" src="./assets/DottedLines.png">
         <img id="B1" src="./assets/B1Icon.png">
         <img id="B2" src="./assets/B2Icon.png">
-        <img id="B3" src="./assets/B3Icon.png">
-        <img id="B4" src="./assets/B4Icon.png">
+        <img id="B3" src="./assets/B3Icon2.png">
+        <img id="B4" src="./assets/B4Icon2.png">
         <img id="B5" src="./assets/B5Icon.png">
         <img id="B6" src="./assets/B6Icon.png">
 
@@ -454,8 +454,8 @@
 
         <img id="B1Text" src="./assets/B1Text.png">
         <img id="B2Text" src="./assets/B2Text.png">
-        <img id="B3Text" src="./assets/B3Text.png">
-        <img id="B4Text" src="./assets/B4Text.png">
+        <img id="B3Text" src="./assets/B3Text2.png">
+        <img id="B4Text" src="./assets/B4Text2.png">
         <img id="B5Text" src="./assets/B5Text.png">
         <img id="B6Text" src="./assets/B6Text.png">
 
@@ -623,14 +623,14 @@
                  position="0.5 -0.59 0.011" height="0.32" width="0.25" rotation="0 0 0" scale="0 0 0"
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 800; autoplay: false; easing: easeOutElastic; startEvents: scaleAnimStart"></a-plane>
 
-        <a-plane id="animSeqPlane" src="#AnimSeq72" visible="false" material="shader: flat; transparent: true; alphaTest: 0.1;" 
-          position="0.23 -0.015 0.01" scale="2.665 1.5 1" rotation="0 0 -1"
+        <a-plane id="animSeqPlane" src="#AnimSeq1" visible="false" material="shader: flat; transparent: true; alphaTest: 0.1;" 
+          position="0.23 -0.015 0.01" scale="3.9975 2.25 1" rotation="0 0 -1"
           animation="property: scale; from: 2.665 1.5 1; to: 3.9975 2.25 1; loop: false; dur: 3000; easing: easeInOutQuad; autoplay: false; startEvents: bringItUp"
           animation__2="property: scale; from: 3.9975 2.25 1; to: 2.665 1.5 1; loop: false; dur: 3000; easing: easeInOutQuad; autoplay: false; startEvents: bringItDown"
           animation__3="property: rotation; from: 0 0 -1; to: 0 0 -361; loop: false; dur: 2600; easing: easeInOutQuad; autoplay: false; startEvents: rotateAnim"
         ></a-plane>
 
-        <a-plane id="cardGraphicPlane" src="#cardGraphic" visible="true" click-detector material="transparent: true; alphaTest: 0.1;" position="0 0 0.015" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
+        <a-plane id="cardGraphicPlane" src="#cardGraphic" visible="false" click-detector material="transparent: true; alphaTest: 0.1;" position="0 0 0.015" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
         <a-plane id="ccimageNameChipPlane" src="#ccimageNameChip" visible="true" click-detector material="transparent: true; alphaTest: 0.1;" position="0 0 0.015" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
 
       </a-entity>
@@ -821,6 +821,7 @@
 
     function playAnimSeq() {
       if (count > 72) {
+        makeTextVisible()
         clearInterval(timer)
       } else {
         count++;
@@ -841,23 +842,18 @@
           executed = true;
           document.getElementById('bgImagePlane').emit('bganimstart')
           setTimeout(function () {
-            document.getElementById('cardGraphicPlane').setAttribute('visible', false)
+            // document.getElementById('cardGraphicPlane').setAttribute('visible', false)
             document.getElementById('animSeqPlane').setAttribute('visible', true)
-            document.getElementById('animSeqPlane').emit('bringItUp')
-            setTimeout(function () {
-              document.getElementById('animSeqPlane').emit('rotateAnim')
-            },200)
-          }, 2300)
-          setTimeout(function () {
+            // document.getElementById('animSeqPlane').emit('bringItUp')
             timer = setInterval(playAnimSeq, 45);
-          }, 5500)
+          }, 2400)
           setTimeout(function () {
             document.getElementById('animSeqPlane').emit('bringItDown')
-          }, 9000)
+          }, 8000)
           setTimeout(function () {
             document.getElementById('cardGraphicPlane').setAttribute('visible', true)
             document.getElementById('animSeqPlane').setAttribute('visible', false)
-          }, 12000)
+          }, 11000)
         }
       };
     })();
@@ -973,7 +969,7 @@
           document.getElementById('example-scanning-overlay').style.display = 'none'
           document.getElementById('scanText').style.display = 'none'
           document.getElementById('logo').style.visibility = "hidden"
-          makeTextVisible()
+          
           animateBgGradient()
           
           // setTimeout(function () {
@@ -982,7 +978,7 @@
           
           setTimeout(function () {
             initOptionsScreen()
-          }, 12000)
+          }, 11000)
         });
         this.el.addEventListener('targetLost', event => {
           console.log("target lost");
