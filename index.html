@@ -628,10 +628,10 @@
                  animation="property: scale; from: 0 0 0; to: 1 1 1; loop: false; dur: 800; autoplay: false; easing: easeOutElastic; startEvents: scaleAnimStart"></a-plane>
 
         <a-plane id="animSeqPlane" src="#AnimSeq1" visible="false" material="shader: flat; transparent: true; alphaTest: 0.1;" 
-          position="0.23 -0.015 0.01" scale="3.9975 2.25 1" rotation="0 0 -1"
+          position="0.23 -0.015 0.4" scale="3.9975 2.25 1" rotation="0 0 -1"
           animation="property: scale; from: 2.665 1.5 1; to: 3.9975 2.25 1; loop: false; dur: 3000; easing: easeInOutQuad; autoplay: false; startEvents: bringItUp"
           animation__2="property: scale; from: 3.9975 2.25 1; to: 2.665 1.5 1; loop: false; dur: 3000; easing: easeInOutQuad; autoplay: false; startEvents: bringItDown"
-          animation__3="property: rotation; from: 0 0 -1; to: 0 0 -361; loop: false; dur: 2600; easing: easeInOutQuad; autoplay: false; startEvents: rotateAnim"
+          animation__3="property: position; from: 0.23 -0.015 0.4; to: 0.23 -0.015 0.01; loop: false; dur: 3000; easing: easeInOutQuad; autoplay: false; startEvents: bringItDown2"
         ></a-plane>
 
         <a-plane id="cardGraphicPlane" src="#cardGraphic" visible="false" click-detector material="transparent: true; alphaTest: 0.1;" position="0 0 0.015" height="2.1" width="2.1" rotation="0 0 0"></a-plane>
@@ -856,6 +856,7 @@
             }, 2400)
             setTimeout(function () {
               document.getElementById('animSeqPlane').emit('bringItDown')
+              document.getElementById('animSeqPlane').emit('bringItDown2')
             }, 8000)
             setTimeout(function () {
               document.getElementById('cardGraphicPlane').setAttribute('visible', true)
