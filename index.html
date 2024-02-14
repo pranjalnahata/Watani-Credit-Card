@@ -175,6 +175,7 @@
     #example-scanning-overlay h3 {
       display: block;
       position: absolute;
+      font-size: medium;
       top: 105%;
       align-self: center;
       color: white;
@@ -281,7 +282,7 @@
     #activateCardIcon1 {
       transform: translate(-50%, -50%);
       position: absolute;
-      top: 82%;
+      top: 90%;
       left: 45%;
       width: 70%;
       height: auto;
@@ -293,10 +294,10 @@
     }
     @keyframes appear1 {
       0% {
-        top: 89%
+        top: 97%
       }
       100% {
-        top: 82%
+        top: 90%
       }
     }
     #activateCardIcon1:hover {
@@ -306,7 +307,7 @@
     #checkYourBenefitsIcon {
       transform: translate(-50%, -50%);
       position: absolute;
-      top: 90%;
+      top: 82%;
       left: 45%;
       width: 70%;
       height: auto;
@@ -318,24 +319,38 @@
     }
     @keyframes appear2 {
       0% {
-        top: 97%
+        top: 89%
       }
       100% {
-        top: 90%
+        top: 82%
       }
     }
 
-
-    #activateYourCardIcon {
-      transform: translate(-50%, -50%);
+    .endScreenBtns {
+      display: flex;
+      justify-content: space-around;
       position: absolute;
-      top: 90%;
-      left: 45%;
-      width: 70%;
+      top: 89%;
+      width: 96%;
       height: auto;
+      padding-left: 2%;
+      padding-right: 2%;
       visibility: hidden;
       z-index: 99999;
     }
+    #activateYourCardIcon {
+      visibility: hidden;
+      width: 50%;
+      height: auto;
+      z-index: 99999;
+    }
+    #applyNowIcon {
+      visibility: hidden;
+      width: 35%;
+      height: auto;
+      z-index: 99999;
+    }
+
 
     #benefitsIcon {
       transform: translate(-50%, -50%);
@@ -415,10 +430,14 @@
     <img id="informationIcon" src="./assets/InfoIcon1.png" onclick="informationCard()"/>
     <img id="reloadIcon" src="./assets/ReloadIcon1.png" onclick="refreshPage()"/>
 
-    <img id="activateCardIcon1" src="./assets/ActivateYourCardIcon.png" onclick="activateCardIcon1()"/>
     <img id="checkYourBenefitsIcon" src="./assets/CheckOutBenefitsIcon.png" onclick="checkYourBenefitsIcon()"/>
+    <img id="activateCardIcon1" src="./assets/ActivateYourCardIcon.png" onclick="activateCardIcon1()"/>
 
-    <img id="activateYourCardIcon" src="./assets/ActivateYourCardIcon.png" onclick="activateCardIcon1()"/>
+    <div class="endScreenBtns">
+      <img id="activateYourCardIcon" src="./assets/ActivateYourCardIcon.png" onclick="activateCardIcon1()"/>
+      <img id="applyNowIcon" src="./assets/ApplyNowBtn.png" onclick="activateCardIcon1()"/>
+    </div>
+
     <img id="benefitsIcon" src="./assets/BenefitsIcon1.png" />
     <img id="privacyPolicy" src="./assets/PrivacyPolicy.png" onclick="hideInformationCard()"/>
 
@@ -456,7 +475,7 @@
         <img id="B5RG" src="./assets/RedGradient.png">
         <img id="B6RG" src="./assets/RedGradient.png">
 
-        <img id="B1Text" src="./assets/B1Text.png">
+        <img id="B1Text" src="./assets/B1Text2.png">
         <img id="B2Text" src="./assets/B2Text.png">
         <img id="B3Text" src="./assets/B3Text2.png">
         <img id="B4Text" src="./assets/B4Text2.png">
@@ -894,11 +913,11 @@
             document.getElementById('reloadIcon').className = "reloadAppear"
           }, 300)
           
-          document.getElementById('activateCardIcon1').style.visibility = "visible"
-          document.getElementById('activateCardIcon1').className = "animationAppear1"
+          document.getElementById('checkYourBenefitsIcon').style.visibility = "visible"
+          document.getElementById('checkYourBenefitsIcon').className = "animationAppear2"
           setTimeout(function () {
-            document.getElementById('checkYourBenefitsIcon').style.visibility = "visible"
-            document.getElementById('checkYourBenefitsIcon').className = "animationAppear2"
+            document.getElementById('activateCardIcon1').style.visibility = "visible"
+            document.getElementById('activateCardIcon1').className = "animationAppear1"
           }, 300)
 
         }
@@ -913,7 +932,9 @@
           executed = true;
           document.getElementById('activateCardIcon1').style.visibility = "hidden"
           document.getElementById('checkYourBenefitsIcon').style.visibility = "hidden"
+
           document.getElementById('activateYourCardIcon').style.visibility = "visible"
+          document.getElementById('applyNowIcon').style.visibility = "visible"
 
           document.getElementById('benefitsIcon').style.visibility = "visible"
           document.getElementById('benefitsIcon').className = "benefitsAppear"
